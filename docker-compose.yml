@@ -134,3 +134,122 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+  # ==========================================
+  # MÍDIA, ÁUDIO & FOTOS
+  # ==========================================
+
+  # --- ENTRETENIMENTO (Jellyfin) ---
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    ports:
+      - "8096:8096"
+    environment:
+      - TZ=${TZ:-America/Sao_Paulo}
+    volumes:
+      - ./configs/jellyfin:/config
+      - jellyfin_cache:/cache
+      # Apontando para a pasta geral de mídias definida no env
+      - ${DATA_PATH}/media:/media
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu, video] # Mantém NVENC para transcodificação acelerada
+
+  # --- STREAMING DE MÚSICA (Navidrome) ---
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    restart: unless-stopped
+    ports:
+      - "4533:4533"
+    environment:
+      - ND_SCANSCHEDULE=1m 
+      - ND_LOGLEVEL=info
+      - ND_SESSIONTIMEOUT=24h
+      - ND_DEFAULTTHEME=Spotify-ish
+    volumes:
+      - ./configs/navidrome:/data
+      # Apenas leitura para as músicas
+      - ${DATA_PATH}/media/musicas:/music:ro
+
+  # --- ORGANIZADOR DE MÚSICAS (MusicBrainz Picard) ---
+  picard:
+    image: jlesage/musicbrainz-picard:latest
+    container_name: picard
+    restart: unless-stopped
+    ports:
+      - "5800:5800"
+    environment:
+      - USER_ID=${PUID:-1000}
+      - GROUP_ID=${PGID:-1000}
+      - TZ=${TZ:-America/Sao_Paulo}
+    volumes:
+      - ./configs/picard:/config
+      # Escrita liberada para organizar os metadados
+      - ${DATA_PATH}/media/musicas:/storage:rw
+
+  # --- GALERIA DE FOTOS (Immich) ---
+  immich-server:
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-v2}
+    container_name: immich_server
+    command: ['start.sh', 'immich']
+    restart: always
+    ports:
+      - "2283:2283"
+    environment:
+      - HOST=0.0.0.0
+      - DB_HOSTNAME=immich_postgres
+      - REDIS_HOSTNAME=immich_redis
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE_NAME=${DB_DATABASE_NAME}
+    volumes:
+      # Caminho definido no .env
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - immich-redis
+      - immich-postgres
+
+  immich-machine-learning:
+    image: ghcr.io/immich-app/immich-machine-learning:release-cuda
+    container_name: immich_machine_learning
+    restart: always
+    environment:
+      - DB_HOSTNAME=immich_postgres
+      - REDIS_HOSTNAME=immich_redis
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE_NAME=${DB_DATABASE_NAME}
+    volumes:
+      - immich_model_cache:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  immich-redis:
+    image: redis:6.2-alpine
+    container_name: immich_redis
+    restart: always
+
+  immich-postgres:
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0
+    container_name: immich_postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_DB=${DB_DATABASE_NAME}
+      - POSTGRES_INITDB_ARGS=--data-checksums
+    volumes:
+      # Isolando o banco de dados do Immich dentro do DATA_PATH
+      - ${DATA_PATH}/immich/postgres:/var/lib/postgresql/data
