@@ -253,3 +253,31 @@ services:
     volumes:
       # Isolando o banco de dados do Immich dentro do DATA_PATH
       - ${DATA_PATH}/immich/postgres:/var/lib/postgresql/data
+  # ==========================================
+  # LEITURA & BIBLIOTECA
+  # ==========================================
+
+  # --- LEITOR DE QUADRINHOS, MANGÁS E PDFs (Kavita) ---
+  kavita:
+    image: jvmilazz0/kavita:latest
+    container_name: kavita
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - TZ=${TZ:-America/Sao_Paulo}
+    volumes:
+      # Configurações isoladas na estrutura do repositório
+      - ./configs/kavita:/kavita/config
+      - ${DATA_PATH}/biblioteca:/libraries
+
+# Declaração dos volumes gerenciados nativamente pelo Docker
+volumes:
+  ollama_data:
+    name: homelab_ollama_data
+  open-webui_data:
+    name: homelab_open-webui_data
+  jellyfin_cache:
+    name: homelab_jellyfin_cache
+  immich_model_cache:
+    name: homelab_immich_model_cache
