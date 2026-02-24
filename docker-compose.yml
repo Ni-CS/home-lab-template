@@ -49,4 +49,88 @@ services:
     volumes:
       - ${DATA_PATH}:/srv
       - ./configs/filebrowser/filebrowser.db:/database/filebrowser.db
+  # ==========================================
+  # DESENVOLVIMENTO (IA)
+  # ==========================================
 
+  # --- BACKEND DE IA (Ollama) ---
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_ORIGINS=*
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  # --- INTERFACE (Open WebUI) ---
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: unless-stopped
+    ports:
+      - "3000:8080"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      # A chave secreta vem do .env
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
+      - CORS_ALLOW_ORIGIN=*
+    volumes:
+      - open-webui_data:/app/backend/data
+    depends_on:
+      - ollama
+
+  # --- ESTUDOS & VISÃO COMPUTACIONAL (Jupyter/Colab Local) ---
+  colab-local:
+    image: us-docker.pkg.dev/colab-images/public/runtime
+    container_name: colab-local
+    restart: unless-stopped
+    ports:
+      - "8899:8080"
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    volumes:
+      # Os notebooks ficam organizados dentro do storage
+      - ${DATA_PATH}/study:/content
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  # --- GERAÇÃO DE IMAGENS (Fooocus) ---
+  fooocus:
+    # Apontando para a estrutura de pastas do repositório
+    build: ./builds/fooocus
+    container_name: fooocus
+    restart: unless-stopped
+    ipc: host
+    ports:
+      - "7865:7865"
+    environment:
+      - CMDARGS=--listen
+      - DATADIR=/content/data
+    volumes:
+      # Modelos e outputs dinâmicos, isolados da configuração local do seu SO
+      - ${DATA_PATH}/fooocus/models:/content/data/models
+      - ${DATA_PATH}/fooocus/outputs:/content/data/outputs
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
