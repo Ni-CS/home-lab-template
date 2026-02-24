@@ -1,0 +1,35 @@
+# --- Variáveis de Ambiente ---
+.env
+*.env
+.env.local
+
+# --- Bancos de Dados e Caches ---
+*.db
+*.sqlite
+*.sqlite3
+**/postgres/
+**/redis/
+**/couchdb_data/
+
+# --- Volumes de Dados e Mídia (Não comitar arquivos locais) ---
+**/data/
+**/uploads/
+**/media/
+**/kavita_data/
+**/navidrome_data/
+**/picard_config/
+**/jellyfin_cache/
+**/jellyfin_config/
+**/open-webui_data/
+**/ollama_data/
+**/stirling-data/
+**/immich/
+
+# --- Modelos de IA e Outputs ---
+**/models/
+**/outputs/
+**/audiocraft_cache/
+
+# --- Arquivos de Sistema Operacional ---
+.DS_Store
+Thumbs.db
