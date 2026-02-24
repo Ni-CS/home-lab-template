@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # ==========================================
+  # INFRAESTRUTURA & DASHBOARD
+  # ==========================================
+
+  # --- DASHBOARD (Página Inicial) ---
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: unless-stopped
+    ports:
+      - "80:3000" # Porta 80 = Acesso direto pelo IP do servidor
+    environment:
+      - HOMEPAGE_ALLOWED_HOSTS=*
+      - TZ=${TZ:-America/Sao_Paulo}
+    volumes:
+      - ./configs/homepage:/app/config
+      - ./configs/homepage/images:/app/public/images
+      - ./configs/homepage/icons:/app/public/icons
+      # Socket do Docker (necessário para o Homepage ler o status dos containers)
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  # --- MONITORAMENTO (Glances) ---
+  glances:
+    image: nicolargo/glances:latest
+    container_name: glances
+    restart: unless-stopped
+    pid: host
+    ports:
+      - "61208:61208"
+    environment:
+      - GLANCES_OPT=-w
+      - TZ=${TZ:-America/Sao_Paulo}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  # --- GERENCIADOR DE ARQUIVOS WEB (FileBrowser) ---
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    restart: unless-stopped
+    ports:
+      - "8085:80"
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    volumes:
+      - ${DATA_PATH}:/srv
+      - ./configs/filebrowser/filebrowser.db:/database/filebrowser.db
+
