@@ -1,0 +1,63 @@
+- AI:
+    - Open WebUI:
+        icon: open-webui.png
+        href: http://localhost:3000
+        description: "Cérebro de Aluguel"
+        server: my-docker
+        container: open-webui
+    - Colab Link:
+        icon: https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Colaboratory_SVG_Logo.svg
+        href: https://colab.research.google.com/
+        description: "Conectar ao Runtime Local"
+        target: _blank
+        container: colab-local
+
+- Media:
+    - Jellyfin:
+        icon: jellyfin.png
+        href: http://localhost:8096
+        description: "Streaming"
+        server: my-docker
+        container: jellyfin
+    - Immich Fotos:
+        icon: immich.png
+        href: http://localhost:2283
+        description: "Backup Fotos"
+        server: my-docker
+        container: immich_server
+    - Navidrome:
+        icon: navidrome.png
+        href: http://localhost:4533
+        description: "Spotify"
+        server: my-docker
+        container: navidrome
+
+- Criatividade:
+    - Fooocus:
+        icon: midjourney.png
+        href: http://localhost:7865
+        description: "Mirage"
+        server: my-docker
+        container: fooocus
+
+- System:
+    - Glances:
+        icon: glances.png
+        href: http://localhost:61208
+        description: "Monitoramento"
+        server: my-docker
+        container: glances
+    - Drive:
+        icon: filebrowser.png
+        href: http://localhost:8085
+        description: "Transferência de Arquivos"
+        server: my-docker
+        container: filebrowser
+
+- Leitura:
+    - Kavita:
+        icon: kavita.png
+        href: http://localhost:5000
+        description: "Quadrinhos e Artigos"
+        server: my-docker
+        container: kavita
