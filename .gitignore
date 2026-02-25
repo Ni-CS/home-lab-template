@@ -1,35 +1,49 @@
-# --- Variáveis de Ambiente ---
+# ==========================================
+# IGNORAR VARIÁVEIS DE AMBIENTE
+# ==========================================
 .env
 *.env
 .env.local
 
-# --- Bancos de Dados e Caches ---
+# ==========================================
+# IGNORAR BANCOS DE DADOS, CACHES E LOGS
+# ==========================================
 *.db
 *.sqlite
 *.sqlite3
+*.log
+*.csv
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# IGNORAR DADOS GERADOS PELOS CONTAINERS
+# ==========================================
+# Ignoramos tudo dentro das pastas de configuração que é auto-gerado,
+# pois o script setup.sh já se encarrega de criar as pastas em branco.
+
+configs/jellyfin/
+configs/kavita/
+configs/navidrome/
+configs/picard/
+configs/filebrowser/
+
+# Do homepage, ignoramos apenas os logs, mas mantemos os arquivos .yaml
+configs/homepage/logs/
+
+# Bancos de dados pesados e Caches (garantia extra)
 **/postgres/
 **/redis/
 **/couchdb_data/
+**/cache/
+**/metadata/
 
-# --- Volumes de Dados e Mídia (Não comitar arquivos locais) ---
+# ==========================================
+# IGNORAR VOLUMES DE MÍDIA E IA
+# ==========================================
 **/data/
 **/uploads/
 **/media/
-**/kavita_data/
-**/navidrome_data/
-**/picard_config/
-**/jellyfin_cache/
-**/jellyfin_config/
-**/open-webui_data/
-**/ollama_data/
-**/stirling-data/
-**/immich/
-
-# --- Modelos de IA e Outputs ---
 **/models/
 **/outputs/
 **/audiocraft_cache/
-
-# --- Arquivos de Sistema Operacional ---
-.DS_Store
-Thumbs.db
