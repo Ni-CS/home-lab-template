@@ -42,7 +42,7 @@ A arquitetura foi desenhada para não poluir o sistema operacional do host. Tudo
 ### 1. Clone o repositório
 ```bash
 git clone https://github.com/Ni-CS/home-lab-template.git
-cd homelab-template
+cd home-lab-template
 ```
 
 ### 2. Configure as Variáveis de Ambiente
