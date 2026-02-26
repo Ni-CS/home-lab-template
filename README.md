@@ -41,8 +41,8 @@ A arquitetura foi desenhada para não poluir o sistema operacional do host. Tudo
 
 ### 1. Clone o repositório
 ```bash
-git clone https://github.com/Ni-CS/ai-homelab-template.git
-cd ai-homelab-template
+git clone https://github.com/Ni-CS/homelab-template.git
+cd homelab-template
 ```
 
 ### 2. Configure as Variáveis de Ambiente
