@@ -4,7 +4,12 @@
 [![NVIDIA GPU](https://img.shields.io/badge/NVIDIA-GPU%20Accelerated-76B900.svg)](https://developer.nvidia.com/cuda-zone)
 [![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red.svg)](https://github.com/)
 
-Um template "plug-and-play" e parametrizado para construir o seu próprio laboratório pessoal focado em Inteligência Artificial, Mídia e Produtividade. Substitua serviços em nuvem pagos pelas suas próprias alternativas locais, rodando no seu hardware de forma segura e privada.
+## Sobre o Projeto
+
+Esse é um template para construir um laboratório (self-hosting) pessoal focado em Inteligência Artificial, Mídias e Produtividade. Ele pode substituir serviços em nuvem pagos por alternativas locais e open-source, rodando no seu hardware de forma segura e privada.
+Desenvolvi ele durante os últimos 2 meses, aprimorando e ajustando alguns detalhes. Foi desenvolvido para auxiliar meus estudos de Machine Learning, Deep Learning e MLOps. Foi algo bem divertido de desenvolver e espero que possa ser útil para mais pessoas.
+
+Ao fim deixo uma sugestão de uso em conjunto com TailScale (VPN gratuita) que permite utilizar os serviços fora de sua rede local :)
 
 ---
 
@@ -36,7 +41,7 @@ A arquitetura foi desenhada para não poluir o sistema operacional do host. Tudo
 
 ### 1. Clone o repositório
 ```bash
-git clone [https://github.com/SEU_USUARIO/ai-homelab-template.git](https://github.com/SEU_USUARIO/ai-homelab-template.git)
+git clone https://github.com/Ni-CS/ai-homelab-template.git
 cd ai-homelab-template
 ```
 
@@ -71,9 +76,9 @@ Escolha a opção 1 para ligar tudo, ou escolha módulos específicos. O painel 
 (Opcional: Para baixar o modelo de geração de imagens do Fooocus, execute `./scripts/download_models.sh`).
 
 ## Acesso Remoto Seguro (Tailscale)
-Nunca abra as portas do seu Home Lab (como 80, 3000, 8096) diretamente no seu roteador para a internet. Isso expõe seus arquivos e poder de processamento a ataques.
+Não abra as portas do seu Home Lab (como 80, 3000, 8096) diretamente no seu roteador para a internet. Isso irá expor seus arquivos e poder de processamento a ataques.
 
-A melhor prática DevOps para acessar seu laboratório de qualquer lugar do mundo (4G, Wi-Fi do trabalho, viagens) é usando o Tailscale.
+A melhor forma para acessar seu laboratório de qualquer lugar do mundo (4G, Wi-Fi do trabalho, viagens) é usando uma VPN (Tailscale recomendado).
 1. Instale o Tailscale no seu Servidor Home Lab.
 2. Instale o app do Tailscale no seu celular ou notebook pessoal.
 3. O Tailscale criará uma VPN Mesh (WireGuard) e dará ao seu servidor um IP privado seguro (ex: 100.x.x.x).
