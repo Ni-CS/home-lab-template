@@ -73,6 +73,8 @@ Use o script de controle interativo para ligar os containers. Ele evita a necess
 
 Escolha a opção 1 para ligar tudo, ou escolha módulos específicos. O painel inicial estará disponível no IP do seu servidor na porta 80 (ex: `http://localhost`).
 
+![HomePage Preview](assets/homepage.png)
+
 (Opcional: Para baixar o modelo de geração de imagens do Fooocus, execute `./scripts/download_models.sh`).
 
 ## Acesso Remoto Seguro (Tailscale)
