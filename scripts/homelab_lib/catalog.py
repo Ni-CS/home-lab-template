@@ -35,7 +35,28 @@ def require(condition, reason):
 def load(path=None):
     data = read_json(path or ROOT / "catalog/services.json")
     validate(data)
+    modules = module_services()
+    if modules:
+        combined = dict(data, services=data["services"] + modules)
+        combined["source_shape_sha256"] = digest({s["id"]: s["observed"] for s in combined["services"]})
+        validate(combined)
     return data
+
+
+def module_services():
+    """New modules stay separate from the 44-service historical evidence."""
+    path = ROOT / "catalog/modules.json"
+    if not path.exists():
+        return []
+    data = read_json(path)
+    require(set(data) == {"schema_version", "services"} and data["schema_version"] == 1
+            and isinstance(data["services"], list) and [s.get("id") for s in data["services"]] == ["portal"],
+            "extensões do catálogo inválidas")
+    return data["services"]
+
+
+def entries(data):
+    return data["services"] + [s for s in module_services() if s["id"] not in {s["id"] for s in data["services"]}]
 
 
 def validate(data):
@@ -101,11 +122,11 @@ def validate(data):
 
 
 def resolve(data, selected, hardware="cpu", *, include_defaults=True, check_hardware=True):
-    by_id = {s["id"]: s for s in data["services"]}
+    by_id = {s["id"]: s for s in entries(data)}
     selected = set(selected)
     require(selected <= by_id.keys(), "seleção contém módulo desconhecido ou ainda planejado")
     if include_defaults:
-        selected.update(s["id"] for s in data["services"] if s["execution"] == "always-on")
+        selected.update(s["id"] for s in entries(data) if s["execution"] == "always-on")
     done, active, ordered = set(), set(), []
 
     def visit(name):
@@ -146,7 +167,7 @@ def plan(data, selected, hardware):
     external = {m["id"] for m in data["future_modules"] if m["status"] == "toolkit-ready"}
     requested_external = sorted(set(selected) & external)
     ordered = resolve(data, [n for n in selected if n not in external], hardware)
-    by_id = {s["id"]: s for s in data["services"]}
+    by_id = {s["id"]: s for s in entries(data)}
     return {"mode": "plan-only", "target": "new-installation-preview", "execution_authorized": False,
             "hardware": hardware, "hardware_detected": False, "runtime_verified": False,
             "external_toolkit_modules": requested_external,
@@ -154,7 +175,7 @@ def plan(data, selected, hardware):
             "inventory_only": [n for n in ordered if by_id[n]["availability"] != "renderable"],
             "optional_integrations": {n: by_id[n]["integrations"] for n in ordered if by_id[n]["integrations"]},
             "growth_bytes": None, "blockers_for_install": ["host_capacity_paths_ports_backup_not_verified",
-                                                           "installer_executor_not_implemented"]}
+                                                           "explicit_new_project_install_budget_required"]}
 
 
 def valid_url(value):
@@ -196,11 +217,11 @@ def site_config(path):
 
 def render(data, selected, hardware, site):
     ordered = resolve(data, selected, hardware)
-    by_id = {s["id"]: s for s in data["services"]}
+    by_id = {s["id"]: s for s in entries(data)}
     result = {"name": "homelab-modular-preview", "services": {}}
     parsed = valid_url(site["base_url"])
     host_literal = "[" + parsed.hostname + "]" if ":" in parsed.hostname else parsed.hostname
-    replacements = {"@STATE@": site["state_dir"], "@DATA@": site["data_dir"],
+    replacements = {"@ROOT@": str(ROOT), "@STATE@": site["state_dir"], "@DATA@": site["data_dir"],
                     "@BIND@": site["bind_address"], "@HOST@": parsed.netloc,
                     "@HOMEPAGE_HOSTS@": ",".join(sorted({parsed.netloc, host_literal, host_literal + ":3001"}))}
 
@@ -223,7 +244,15 @@ def render(data, selected, hardware, site):
         variant = hardware if service["hardware"]["gpu"] != "none" else "cpu"
         require(definition[variant] is not None, "template da variante ausente")
         model = replace(copy.deepcopy(definition[variant]))
-        require(set(model) <= {"image", "restart", "logging", "volumes", "ports", "environment", "depends_on", "deploy"},
+        fields = {"image", "restart", "logging", "volumes", "ports", "environment", "depends_on", "deploy"}
+        if name == "portal":
+            fields.update({"build", "read_only", "user", "cap_drop", "security_opt"})
+            require(model.get("build") == {"context": str(ROOT), "dockerfile": "apps/portal/Dockerfile"}
+                    and model.get("read_only") is True and model.get("user") == "65532:65532"
+                    and model.get("cap_drop") == ["ALL"]
+                    and model.get("security_opt") == ["no-new-privileges:true"]
+                    and model.get("ports") == ["127.0.0.1:3100:8080"], "isolamento do portal divergente")
+        require(set(model) <= fields,
                 "template contém campo não revisado")
         require(set(model.get("depends_on", {})) == set(service["dependencies"]), "dependências do template divergentes")
         require(not model.get("privileged") and not any("docker.sock" in str(m) for m in model.get("volumes", [])),
@@ -241,7 +270,7 @@ def render(data, selected, hardware, site):
 
 def homepage(data, selected, hardware, site):
     ordered = resolve(data, selected, hardware)
-    by_id = {s["id"]: s for s in data["services"]}
+    by_id = {s["id"]: s for s in entries(data)}
     require(site["urls"].keys() <= by_id.keys() | {m["id"] for m in data["future_modules"]}, "URL refere módulo desconhecido")
     host = valid_url(site["base_url"]).hostname
     require(host not in {"localhost", "127.0.0.1", "::1"}, "dashboard remota não aceita base localhost")

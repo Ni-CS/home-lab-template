@@ -35,6 +35,11 @@ def writable_sources(model, site):
             catalog.require(source.is_absolute() and ".." not in source.parts and
                             not any(p.is_symlink() for p in [source, *source.parents]), "bind inválido ou symlink")
             if len(parts) == 3 and parts[2] == "ro":
+                if source == Path(site["state_dir"]) / "portal" and mount.endswith(":/config:ro"):
+                    catalog.require(not source.exists() or source.is_dir() and not any(source.iterdir()),
+                                    "configuração de portal existente; preservar e revisar separadamente")
+                    sources.add(source)
+                    continue
                 catalog.require(source.is_dir(), "biblioteca somente leitura ausente")
                 continue
             roots = [Path(site["state_dir"]), Path(site["data_dir"])]
@@ -75,6 +80,20 @@ def execute(path, apply=False, budget_gib=None):
     # Only new/empty declared directories; never copy from existing app data.
     for source in sources:
         source.mkdir(parents=True, exist_ok=True)
+    if "portal" in model["services"]:
+        # Only sanitized URLs; no secrets, databases, authentication or Docker socket.
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("portal_manage", ROOT / "apps/portal/manage.py")
+        portal = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(portal)
+        visible = {s["id"] for s in portal.public_services()}
+        config = {"schema_version": 1, "title": "HomeLab", "base_url": site["base_url"],
+                  "services": {n: {"url": u} for n, u in site["urls"].items() if n in visible}}
+        portal.validate_config(config, portal.public_services())
+        config_path = Path(site["state_dir"]) / "portal/portal.json"
+        write_private(config_path, json.dumps(config, indent=2) + "\n")
+        # Non-root container reads exactly this non-secret preferences file.
+        config_path.chmod(0o644)
     dashboard = Path(site["state_dir"]) / "homepage"
     cards = catalog.homepage(data, selection["services"], selection["hardware"], site)
     write_private(dashboard / "services.yaml", json.dumps(cards, ensure_ascii=False, indent=2) + "\n")

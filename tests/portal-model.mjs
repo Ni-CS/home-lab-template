@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+const source=await readFile(new URL('../apps/portal/web/model.js',import.meta.url),'utf8');
+const {safeUrl,validateConfig,mergeConfig,destinations,matches}=await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+const services=[{id:'music',title:'Música',description:'Sua coleção',group:'Mídia',eyebrow:'MÚSICA',navigation:{scheme:'http',port:4533,path:'/'},favorite:true}];
+const config={schema_version:1,title:'HomeLab',base_url:'http://server.example.invalid',services:{}};
+for(const url of ['javascript:alert(1)','https://user:password@example.invalid','http://example.invalid/?token=secret','http://localhost','http://127.0.0.1','http://0.0.0.0','http://server.example.invalid:99999','http://example.invalid/#token'])assert.throws(()=>safeUrl(url));
+assert.equal(validateConfig(config,services),config);
+assert.throws(()=>validateConfig({...config,token:'forbidden'},services));
+assert.throws(()=>validateConfig({...config,services:{music:{url:'javascript:alert(1)'}}},services));
+assert.equal(destinations(services,config)[0].url,'http://server.example.invalid:4533/');
+assert.equal(destinations(services,mergeConfig(config,{services:{music:{url:'https://music.example.invalid'}}}))[0].url,'https://music.example.invalid');
+assert.equal(matches(services[0],'musica'),true);
+assert.equal(destinations(services,mergeConfig(config,{services:{music:{enabled:false}}})).length,0);
+console.log('PASS: URL/secret boundaries, config merge, catalog ports, visibility and accent-insensitive search.');

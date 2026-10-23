@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#070707">
+<meta name="description" content="NOCTIS. Memória, som e conhecimento. Seu HomeLab em um só lugar.">
+<title>NOCTIS · Omnia in uno loco</title><link rel="icon" href="/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css"><script type="module" src="/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<div class="shell"><button class="sidebar-scrim" id="sidebar-scrim" aria-label="Recolher navegação" tabindex="-1" hidden></button>
+<aside class="sidebar" id="site-sidebar" aria-label="Navegação principal">
+<a class="brand" href="#inicio" aria-label="NOCTIS, início"><span class="brand-mark" aria-hidden="true">N<span> / </span></span><span class="brand-text">NOCTIS<span>PERSONAL HOMELAB</span></span></a>
+<div class="sidebar-topline"><span>// NAVEGAÇÃO</span><button id="sidebar-close" aria-label="Recolher navegação"><span data-icon="x"></span></button></div><nav id="navigation"></nav>
+<div class="sidebar-bottom"><button class="settings-trigger subtle" data-settings><span data-icon="sliders"></span><span>Personalizar</span></button><div class="private-note"><span data-icon="lock"></span><span>ACESSO PESSOAL<br><strong>OMNIA IN UNO LOCO</strong></span></div></div>
+</aside>
+<div class="workspace">
+<header class="topbar"><button id="sidebar-toggle" aria-label="Expandir navegação" aria-expanded="false" aria-controls="site-sidebar"><span data-icon="menu"></span></button><div class="breadcrumb"><span class="terminal-mark">&gt;_</span><span id="breadcrumb-title">Visão geral</span><span class="slash">/</span><span id="portal-name">HomeLab</span></div><button class="search-trigger" id="search-trigger"><span data-icon="search"></span><span>Buscar no seu universo</span><kbd>Ctrl K</kbd></button><button class="profile" data-settings aria-label="Personalizar portal"><span data-icon="sliders"></span></button></header>
+<main id="content" tabindex="-1">
+<section class="hero" aria-labelledby="hero-title"><div class="hero-topline"><span>[ PORTAL PESSOAL / 01 ]</span><span>IN SILENTIO <b aria-hidden="true">+</b></span></div><div class="hero-copy"><p class="eyebrow">AD ASTRA <span aria-hidden="true">/</span> DO SEU PRÓPRIO MUNDO</p><h1 id="hero-title"><span>NOCTIS</span><em>AD ASTRA.</em></h1><p class="hero-description">Memória, som e conhecimento.<br>O que é seu, em um só lugar.</p><a class="hero-enter" href="#destinations">Explorar o acervo <span aria-hidden="true">↗</span></a></div><div class="ascii-scene" aria-hidden="true"><span class="ascii-coordinate">FIG. 001 &nbsp; / &nbsp; PORTA NOCTIS</span><pre id="cathedral-art"></pre><span class="ascii-caption">ENTRE O SILÊNCIO E O INFINITO</span></div><div class="hero-bottom"><span>OMNIA IN UNO LOCO</span><span aria-hidden="true">+ &nbsp; + &nbsp; +</span><span>SEU ESPAÇO. SUAS REGRAS.</span></div></section>
+<section class="destinations" id="destinations"><div class="section-heading"><div><p class="eyebrow muted" id="section-kicker">// 01 — DESTINOS PESSOAIS</p><h2 id="section-title">SEUS ESSENCIAIS<span> /</span></h2></div><div class="section-actions"><button id="favorites-filter" aria-pressed="false"><span data-icon="star"></span> Só favoritos</button><button class="icon-button" data-settings aria-label="Editar atalhos"><span data-icon="sliders"></span></button></div></div><div id="service-grid" class="bento" aria-live="polite"></div><p class="empty" id="empty" hidden>Nenhum atalho por aqui. Ajuste seus favoritos ou a configuração.</p></section>
+<section class="system-section" id="system-section"><div class="section-heading compact"><div><p class="eyebrow muted">// 02 — VIGILIA</p><h2>NOS BASTIDORES<span> /</span></h2></div><a href="#sistema" class="text-link">Explorar sistema <span data-icon="arrow-right"></span></a></div><div class="system-grid" id="system-grid"></div></section>
+<section class="access-note"><div class="note-icon" data-icon="scan"></div><div><h3>SEM SINAIS INVENTADOS.</h3><p>Atalhos diretos, sem rastreadores. A disponibilidade dos serviços ainda não é monitorada neste painel.</p></div><span class="unknown-pill"><i></i> Estado desconhecido</span></section>
+<footer><span><span class="footer-mark">N /</span> NOCTIS — SEU ACERVO, SEU TEMPO.</span><a href="#sistema">Homepage disponível como fallback <span data-icon="arrow-up-right"></span></a></footer>
+</main>
+</div></div>
+<dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-head"><span data-icon="search"></span><h2 id="search-title" class="sr-only">Buscar serviços</h2><input id="search-input" type="search" placeholder="O que você quer abrir?" autocomplete="off" aria-label="Buscar por nome ou atividade"><button data-close="search-dialog" class="icon-button" aria-label="Fechar busca"><span data-icon="x"></span></button></div><div class="search-results" id="search-results"></div><div class="dialog-footer"><span>↑ ↓ navegar · Enter abrir</span><span>Esc fechar</span></div></dialog>
+<dialog id="settings-dialog" aria-labelledby="settings-title"><form id="settings-form"><div class="settings-head"><div><p class="eyebrow muted">// CONFIGURAÇÃO LOCAL</p><h2 id="settings-title">PERSONALIZAR.</h2></div><button type="button" data-close="settings-dialog" class="icon-button" aria-label="Fechar personalização"><span data-icon="x"></span></button></div><p class="settings-description">As mudanças ficam neste navegador. O arquivo privado do servidor continua preservado.</p><label>Nome do portal<input id="portal-title" maxlength="40" required></label><label>Endereço base LAN ou Tailscale<input id="base-url" type="url" placeholder="http://seu-servidor" aria-describedby="base-help"></label><p class="field-help" id="base-help">As portas vêm do catálogo. URLs específicas abaixo têm prioridade. Use somente endereços sem senhas ou tokens.</p><div class="service-settings" id="service-settings"></div><p id="settings-error" class="form-error" role="alert"></p><div class="settings-actions"><button type="button" class="subtle" id="reset-preferences">Usar configuração do servidor</button><button type="submit" class="primary-button">Salvar preferências <span data-icon="check"></span></button></div></form></dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+<noscript>Ative JavaScript para navegar pelos atalhos deste portal.</noscript>
+</body></html>

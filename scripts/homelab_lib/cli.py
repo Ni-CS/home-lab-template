@@ -77,13 +77,14 @@ def main(argv=None):
                 result = catalog.check_local(data) if args.check_local else {
                     "valid": True, "services": len(data["services"]),
                     "renderable": sum(s["availability"] == "renderable" for s in data["services"]),
+                    "new_modules": [s["id"] for s in catalog.module_services()],
                     "runtime_verified": False}
                 if args.check_local and not result["matches_local_compose"]:
                     print(json.dumps(result, ensure_ascii=False, indent=2))
                     return 2
             elif args.command == "list":
                 result = [{k: s[k] for k in ("id", "category", "execution", "availability", "hardware")}
-                          for s in data["services"]]
+                          for s in catalog.entries(data)]
             elif args.command == "plan":
                 result = catalog.plan(data, args.select, args.hardware)
             elif args.command == "doctor":

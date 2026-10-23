@@ -4,12 +4,12 @@
     {
       "source": "catalog/services.json",
       "destination": "catalog/services.json",
-      "sha256": "770ef3a81526c0d9b7829ffd315ae50f221e54799727708a24817a606f7098cc"
+      "sha256": "7803378535ef5ec993cbb283ec1560a08ee06d5827fde81277fb4bd0bd6ac44d"
     },
     {
       "source": "docs/operations/modular-cli.md",
       "destination": "docs/operations/modular-cli.md",
-      "sha256": "0083af553f213975604c5b2b4f96d4b653862a314e9403607e6a81c778d65d58"
+      "sha256": "9c5aaedf453d28534411777836afbae9b1f0a931bfc76dc8c433c31ff879c0df"
     },
     {
       "source": "scripts/cleanup-plan.py",
@@ -39,22 +39,22 @@
     {
       "source": "scripts/homelab_lib/catalog.py",
       "destination": "scripts/homelab_lib/catalog.py",
-      "sha256": "496f3c72b6158d4e495c4053009a29a9365ae8e40191de026e7abac468820bc8"
+      "sha256": "30401eeeffcc99a49d08d6a7bfa5db368685922b230b6ccfb7f661e3320bce4b"
     },
     {
       "source": "scripts/homelab_lib/cli.py",
       "destination": "scripts/homelab_lib/cli.py",
-      "sha256": "260bdeebc7968a9be67e9f5f09cd39e74ad57c1b4da413b3597cd79a21ddf07b"
+      "sha256": "fb38d7d42467a36e77dd8a1e916c53357ed14588a0b4d4cb8cd20aa216f8b122"
     },
     {
       "source": "scripts/homelab_lib/host.py",
       "destination": "scripts/homelab_lib/host.py",
-      "sha256": "a9711ba6c9474c5b6c5a65a5f5f463dc576a85e806bbcfa4749d1fd8c11b6aa9"
+      "sha256": "2e0590e7b0d58ebe8a6cadcc688e98a2a289139b5959630e476103e07ee8e69c"
     },
     {
       "source": "scripts/homelab_lib/install.py",
       "destination": "scripts/homelab_lib/install.py",
-      "sha256": "bcdce3b3d50ead16ab25b1748bac2380d31d3f4800de49219b3dfa3b90c3b0ec"
+      "sha256": "522ce45dfec591417e67fce37f47e8ca8cd4ba30c848bc5023425442ce5e59aa"
     },
     {
       "source": "scripts/homelab_lib/latex.py",
@@ -74,7 +74,7 @@
     {
       "source": "scripts/homelab_lib/wizard.py",
       "destination": "scripts/homelab_lib/wizard.py",
-      "sha256": "416d710124bf5bee24c35eda5264e1b2cb1d77a655ef5c401017c23a65ae9426"
+      "sha256": "f332ef363e480ddb9eb04d0b6123c91613c96bbe438034aa2729f81a1d8a2c8a"
     },
     {
       "source": "templates/homepage/custom.css",
@@ -184,17 +184,147 @@
     {
       "source": "README.md",
       "destination": "README.md",
-      "sha256": "5ff3424c6a8adbd52b92f6fa74b1e2b649312222cf7368418ffab0f52397e4d9"
+      "sha256": "193b895173380a2137409208b7cf927573f17d9cb98805b67725bbbba2867eee"
     },
     {
       "source": ".gitignore",
       "destination": ".gitignore",
-      "sha256": "f93b585e3e4243f5bdd6a3df06b4aa0f6b27b5eed10e67a2eb8966deea7537d5"
+      "sha256": "a91af5b53196c1fdc74870b5d92763cb643be162ed1300889dbd12b02f888f47"
     },
     {
       "source": "AGENTS.md",
       "destination": "AGENTS.md",
       "sha256": "d48b895dd9e887948891c5e00523494f21f973ec9bf5e14c80a30d50cf92e9d1"
+    },
+    {
+      "source": "catalog/modules.json",
+      "destination": "catalog/modules.json",
+      "sha256": "ab26fde715d2671aa7f093c59c418493055be1f04dc366435929e7187a43fce5"
+    },
+    {
+      "source": "catalog/portal-ui.json",
+      "destination": "catalog/portal-ui.json",
+      "sha256": "7860e84b01f220d4068ceedfcbf4029533596571ec997e1687e763fd30ea01f2"
+    },
+    {
+      "source": "templates/modular/portal.json",
+      "destination": "templates/modular/portal.json",
+      "sha256": "0c4c4012dc5d75bfd6636aba22574f75514d82d4913acd814cf8d88a53c5b006"
+    },
+    {
+      "source": "apps/portal/manage.py",
+      "destination": "apps/portal/manage.py",
+      "sha256": "d53f1d845030c251c4f08bd065176b5760a327327fa7b5f0b9ef69f12627fd64"
+    },
+    {
+      "source": "apps/portal/Dockerfile",
+      "destination": "apps/portal/Dockerfile",
+      "sha256": "9cac7d6d66b383c5d8b6608dd16383f9c08927c4cc368d9a0302155172d8eb91"
+    },
+    {
+      "source": "apps/portal/config.example.json",
+      "destination": "apps/portal/config.example.json",
+      "sha256": "c6a10dd0b134a5336cb361cf7533c9b2792b17c816d428db80b85235b86fa072"
+    },
+    {
+      "source": "apps/portal/README.md",
+      "destination": "apps/portal/README.md",
+      "sha256": "1e90a91ac1d46bf6c4120712634e6d55fdbc1f12fb4432cc21214decc2647bc7"
+    },
+    {
+      "source": "tests/test_portal.py",
+      "destination": "tests/test_portal.py",
+      "sha256": "c49fd3f1f28188d4c75ead4c539ce74854b792009190248e67074f55137240c0"
+    },
+    {
+      "source": "tests/portal-model.mjs",
+      "destination": "tests/portal-model.mjs",
+      "sha256": "730bfeb0ccab5c80ec7e8943a2e6646ef040d27e050549df911d4891b354de2f"
+    },
+    {
+      "source": "tests/portal-browser.mjs",
+      "destination": "tests/portal-browser.mjs",
+      "sha256": "51b24bfd770c0857add54a3e6d333dc13b50e5858919f6fb9ae1719668baaa74"
+    },
+    {
+      "source": "docs/decisions/ADR-003-private-portal.md",
+      "destination": "docs/decisions/ADR-003-private-portal.md",
+      "sha256": "ddc9d1a8553d84906fccb7e218a9c6226ba235001988a2264261c01f9efc7b66"
+    },
+    {
+      "source": "examples/compose/immich-logging.example.yml",
+      "destination": "examples/compose/immich-logging.example.yml",
+      "sha256": "1d6f2f31fdbe1808dadf5ef920a26d854ee2e2d6dd3989afe3a3994249ba6eb2"
+    },
+    {
+      "source": "apps/portal/web/app.js",
+      "destination": "apps/portal/web/app.js",
+      "sha256": "8642c091592ec0cfcb710fe12d407c81cce5801130cd47866c2cddc7797d3a00"
+    },
+    {
+      "source": "apps/portal/web/base.css",
+      "destination": "apps/portal/web/base.css",
+      "sha256": "5888499f66b3ba3c5c28e1958ec01ec66dd27f802cfb46f234da8139052f543b"
+    },
+    {
+      "source": "apps/portal/web/index.html",
+      "destination": "apps/portal/web/index.html",
+      "sha256": "971376d8f5beb1b886128882fcb028e4641aaa76aa66b8537498a50d157c3121"
+    },
+    {
+      "source": "apps/portal/web/mark.svg",
+      "destination": "apps/portal/web/mark.svg",
+      "sha256": "2b9d450d1a1b28b7116fb581d1bde89de7488d942f4d889c3654bcb3ab07e01a"
+    },
+    {
+      "source": "apps/portal/web/model.js",
+      "destination": "apps/portal/web/model.js",
+      "sha256": "4da34ed14a493a1cde828bf636b396a57b2e4b6c61a678af69e7979e30d16229"
+    },
+    {
+      "source": "apps/portal/web/styles.css",
+      "destination": "apps/portal/web/styles.css",
+      "sha256": "67e2fe4618872a2ef3863b2293a6bd22b2268ba7e46ac51b1651b195d6f5c1ce"
+    },
+    {
+      "source": ".dockerignore",
+      "destination": ".dockerignore",
+      "sha256": "57f1e697a5bb39a1c8012f4774e6344a5e23a003f8fe8ba37b487f73166e51a3"
+    },
+    {
+      "source": "apps/portal/FONTS.md",
+      "destination": "apps/portal/FONTS.md",
+      "sha256": "23c411fc9ebe0f3bee39c1b0b4b765b5f739c524b28dfb20a55fde33b92088e0"
+    },
+    {
+      "source": "apps/portal/web/OFL.txt",
+      "destination": "apps/portal/web/OFL.txt",
+      "sha256": "10b0e6bb43166a50fbe7cde2895bd7f703738a5da843acb5c97c95dc9ea26817"
+    },
+    {
+      "source": "apps/portal/web/art.js",
+      "destination": "apps/portal/web/art.js",
+      "sha256": "7b351e855702225985d72674bd89313bb715e4078a1429f7af6d423e8fa8b02a"
+    },
+    {
+      "source": "apps/portal/web/display.ttf",
+      "destination": "apps/portal/web/display.ttf",
+      "sha256": "e74b750df582c608f35db467b711b2b60d2217618e85e60b72b42dfd00446cab"
+    },
+    {
+      "source": "apps/portal/web/grain.svg",
+      "destination": "apps/portal/web/grain.svg",
+      "sha256": "77138ad49c8ac7128408fbab898239b977ff63120448f665da707141986443fa"
+    },
+    {
+      "source": "docs/previews/noctis-desktop.png",
+      "destination": "docs/previews/noctis-desktop.png",
+      "sha256": "118ac7c2f906f75a4ef06a768f8298ed75a58af67d67ffbca8695f86edafc4cd"
+    },
+    {
+      "source": "docs/previews/noctis-mobile.png",
+      "destination": "docs/previews/noctis-mobile.png",
+      "sha256": "ea32c75a4dfc17a9ec53da9b172b1a9ee05abc2a8bf05bd744f27664e145ba49"
     }
   ]
 }

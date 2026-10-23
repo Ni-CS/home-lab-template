@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "services": {
+    "immich-server": {
+      "title": "Immich",
+      "group": "Biblioteca",
+      "icon": "aperture",
+      "description": "O tempo passa. As memórias ficam.",
+      "eyebrow": "MEMORIA / FOTOGRAFIA",
+      "favorite": true,
+      "art": "memories"
+    },
+    "navidrome": {
+      "title": "Navidrome",
+      "group": "Mídia",
+      "icon": "music",
+      "description": "A trilha do seu próprio mundo.",
+      "eyebrow": "SONUS / MÚSICA",
+      "favorite": true,
+      "art": "sound"
+    },
+    "jellyfin": {
+      "title": "Jellyfin",
+      "group": "Mídia",
+      "icon": "play",
+      "description": "Histórias para depois do anoitecer.",
+      "eyebrow": "CINEMA / MÍDIA",
+      "favorite": true,
+      "art": "cinema"
+    },
+    "filebrowser": {
+      "title": "FileBrowser",
+      "group": "Biblioteca",
+      "icon": "folder",
+      "description": "O seu acervo, ao seu alcance.",
+      "eyebrow": "ARCHIVUM / ARQUIVOS",
+      "favorite": true,
+      "art": "files"
+    },
+    "kavita": {
+      "title": "Kavita",
+      "group": "Biblioteca",
+      "icon": "book",
+      "description": "Há outros mundos nestas páginas.",
+      "eyebrow": "LECTURA / BIBLIOTECA",
+      "favorite": true,
+      "art": "reading"
+    },
+    "docmost": {
+      "title": "Docmost",
+      "group": "Biblioteca",
+      "icon": "notebook",
+      "description": "Ideias que merecem permanecer.",
+      "eyebrow": "NOTAE / CONHECIMENTO",
+      "favorite": true,
+      "art": "notes"
+    },
+    "uptime-kuma": {
+      "title": "Uptime Kuma",
+      "group": "Sistema",
+      "icon": "activity",
+      "description": "Acompanhar disponibilidade",
+      "eyebrow": "VIGILIA / MONITORAMENTO",
+      "favorite": false,
+      "art": "system"
+    },
+    "glances": {
+      "title": "Glances",
+      "group": "Sistema",
+      "icon": "chart",
+      "description": "Explorar recursos do servidor",
+      "eyebrow": "RECURSOS",
+      "favorite": false,
+      "art": "system"
+    },
+    "homepage": {
+      "title": "Homepage",
+      "group": "Sistema",
+      "icon": "grid",
+      "description": "Seu painel técnico de reserva",
+      "eyebrow": "FALLBACK",
+      "favorite": false,
+      "art": "system"
+    },
+    "adguard": {
+      "title": "AdGuard",
+      "group": "Admin",
+      "icon": "shield",
+      "description": "DNS e proteção da rede",
+      "eyebrow": "REDE",
+      "favorite": false,
+      "art": "system"
+    },
+    "npm": {
+      "title": "Nginx Proxy Manager",
+      "group": "Admin",
+      "icon": "network",
+      "description": "Gerenciar rotas e certificados",
+      "eyebrow": "ACESSO",
+      "favorite": false,
+      "art": "system"
+    }
+  }
+}

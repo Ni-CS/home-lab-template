@@ -123,3 +123,27 @@ sintético, sem .env/daemon. CPU/GPU foram renderizados, não executados. Runtim
 saúde, compilação e LAN/tailnet permanecem não verificados. Reverter somente hunks
 novos/artefatos desta evolução; não resetar a árvore suja nem apagar dados. Mudanças
 de runtime futuras têm rollback próprio e autorização antes de interrupções.
+
+## Portal opcional
+
+`plan --select portal`, `render --select portal --site ...` e o wizard incluem o
+novo módulo CPU isolado. Os 44 serviços de origem e 11 templates anteriores seguem
+intactos como inventário; a extensão tem seu próprio descritor. O instalador cria
+apenas configuração de URLs/preferências para ele. Fonte e operação independente:
+[portal](../../apps/portal/README.md). Nenhuma rota LAN/tailnet ou Homepage é
+substituída. Start do Compose legado com `--profile '*'` inclui módulos removidos:
+use seleções explícitas; profiles de reinstalação são opt-in.
+
+
+## PRs e permissão do conector
+
+`403 Resource not accessible by integration` exige revisar a instalação da App
+na **conta correta**, acesso a este repositório e **Pull requests: Read and write**.
+Em GitHub → Settings → Applications → Installed GitHub Apps, revisar a App usada
+pelo conector e aceitar uma atualização de permissões, se oferecida; depois,
+reautorizar a conexão. Permissões que a App não solicita precisam ser habilitadas
+pelo fornecedor: não criar tokens no código nem ampliar permissões locais para
+contornar o erro. A conexão desta sessão não expôs instalação administrável do repo.
+[Autorização vs instalação](https://docs.github.com/en/apps/using-github-apps/authorizing-github-apps) ·
+[Permissões necessárias](https://docs.github.com/en/rest/authentication/permissions-required-for-github-apps).
+Até a correção, usar o link de comparação web da branch revisada para criar o PR.
