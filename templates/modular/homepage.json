@@ -1,0 +1,28 @@
+{
+  "cpu": {
+    "image": "ghcr.io/gethomepage/homepage:latest",
+    "restart": "unless-stopped",
+    "logging": {
+      "driver": "local",
+      "options": {
+        "max-size": "10m",
+        "max-file": "3"
+      }
+    },
+    "volumes": [
+      "@STATE@/homepage:/app/config"
+    ],
+    "ports": [
+      {
+        "target": 3000,
+        "published": "3001",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      }
+    ],
+    "environment": {
+      "HOMEPAGE_ALLOWED_HOSTS": "@HOMEPAGE_HOSTS@"
+    }
+  },
+  "gpu": null
+}

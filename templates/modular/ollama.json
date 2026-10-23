@@ -1,0 +1,71 @@
+{
+  "cpu": {
+    "image": "ollama/ollama:latest",
+    "restart": "no",
+    "logging": {
+      "driver": "local",
+      "options": {
+        "max-size": "10m",
+        "max-file": "3"
+      }
+    },
+    "volumes": [
+      "@STATE@/ollama:/root/.ollama"
+    ],
+    "ports": [
+      {
+        "target": 11434,
+        "published": "11434",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      }
+    ],
+    "environment": {
+      "OLLAMA_HOST": "0.0.0.0",
+      "OLLAMA_KEEP_ALIVE": "0"
+    }
+  },
+  "gpu": {
+    "image": "ollama/ollama:latest",
+    "restart": "no",
+    "logging": {
+      "driver": "local",
+      "options": {
+        "max-size": "10m",
+        "max-file": "3"
+      }
+    },
+    "volumes": [
+      "@STATE@/ollama:/root/.ollama"
+    ],
+    "ports": [
+      {
+        "target": 11434,
+        "published": "11434",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      }
+    ],
+    "environment": {
+      "OLLAMA_HOST": "0.0.0.0",
+      "OLLAMA_KEEP_ALIVE": "0",
+      "NVIDIA_VISIBLE_DEVICES": "all",
+      "NVIDIA_DRIVER_CAPABILITIES": "compute,utility,video"
+    },
+    "deploy": {
+      "resources": {
+        "reservations": {
+          "devices": [
+            {
+              "driver": "nvidia",
+              "count": 1,
+              "capabilities": [
+                "gpu"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

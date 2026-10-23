@@ -1,0 +1,26 @@
+{
+  "cpu": {
+    "image": "deluan/navidrome:latest",
+    "restart": "no",
+    "logging": {
+      "driver": "local",
+      "options": {
+        "max-size": "10m",
+        "max-file": "3"
+      }
+    },
+    "volumes": [
+      "@STATE@/navidrome:/data",
+      "@DATA@/music-library:/music:ro"
+    ],
+    "ports": [
+      {
+        "target": 4533,
+        "published": "4533",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      }
+    ]
+  },
+  "gpu": null
+}

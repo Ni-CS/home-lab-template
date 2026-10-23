@@ -1,0 +1,18 @@
+/* HomeLab: responsive cards, touch targets and visible keyboard focus. */
+:root { --homelab-focus: #38bdf8; }
+main { max-width: 100rem; margin-inline: auto; min-width: 0; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--homelab-focus);
+  outline-offset: 3px;
+  border-radius: .5rem;
+}
+.service-card, [id^="service-"] { min-width: 0; overflow-wrap: anywhere; }
+.service-card a, [id^="service-"] a { min-height: 44px; }
+@media (max-width: 640px) {
+  main { padding-inline: .75rem; }
+  .service-card, [id^="service-"] { border-radius: .85rem; }
+  input[type="search"], input[type="text"] { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

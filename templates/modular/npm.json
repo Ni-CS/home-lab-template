@@ -1,0 +1,38 @@
+{
+  "cpu": {
+    "image": "jc21/nginx-proxy-manager:latest",
+    "restart": "unless-stopped",
+    "logging": {
+      "driver": "local",
+      "options": {
+        "max-size": "10m",
+        "max-file": "3"
+      }
+    },
+    "volumes": [
+      "@STATE@/npm/data:/data",
+      "@STATE@/npm/letsencrypt:/etc/letsencrypt"
+    ],
+    "ports": [
+      {
+        "target": 80,
+        "published": "80",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      },
+      {
+        "target": 443,
+        "published": "4443",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      },
+      {
+        "target": 81,
+        "published": "81",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      }
+    ]
+  },
+  "gpu": null
+}

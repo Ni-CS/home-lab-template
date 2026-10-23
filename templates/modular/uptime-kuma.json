@@ -1,0 +1,25 @@
+{
+  "cpu": {
+    "image": "louislam/uptime-kuma:2",
+    "restart": "unless-stopped",
+    "logging": {
+      "driver": "local",
+      "options": {
+        "max-size": "10m",
+        "max-file": "3"
+      }
+    },
+    "volumes": [
+      "@STATE@/uptime-kuma:/app/data"
+    ],
+    "ports": [
+      {
+        "target": 3001,
+        "published": "3003",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      }
+    ]
+  },
+  "gpu": null
+}

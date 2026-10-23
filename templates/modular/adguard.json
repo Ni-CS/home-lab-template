@@ -1,0 +1,44 @@
+{
+  "cpu": {
+    "image": "adguard/adguardhome:latest",
+    "restart": "unless-stopped",
+    "logging": {
+      "driver": "local",
+      "options": {
+        "max-size": "10m",
+        "max-file": "3"
+      }
+    },
+    "volumes": [
+      "@STATE@/adguard/work:/opt/adguardhome/work",
+      "@STATE@/adguard/conf:/opt/adguardhome/conf"
+    ],
+    "ports": [
+      {
+        "target": 53,
+        "published": "53",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      },
+      {
+        "target": 53,
+        "published": "53",
+        "host_ip": "@BIND@",
+        "protocol": "udp"
+      },
+      {
+        "target": 3000,
+        "published": "3005",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      },
+      {
+        "target": 8083,
+        "published": "8083",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      }
+    ]
+  },
+  "gpu": null
+}

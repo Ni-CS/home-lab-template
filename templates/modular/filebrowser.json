@@ -1,0 +1,27 @@
+{
+  "cpu": {
+    "image": "filebrowser/filebrowser:latest",
+    "restart": "no",
+    "logging": {
+      "driver": "local",
+      "options": {
+        "max-size": "10m",
+        "max-file": "3"
+      }
+    },
+    "volumes": [
+      "@STATE@/filebrowser/database:/database",
+      "@STATE@/filebrowser/config:/config",
+      "@DATA@:/srv:ro"
+    ],
+    "ports": [
+      {
+        "target": 80,
+        "published": "8085",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      }
+    ]
+  },
+  "gpu": null
+}
