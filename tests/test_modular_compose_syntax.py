@@ -1,6 +1,7 @@
 """Real installed Compose parser only; never contacts a daemon or reads .env."""
 
 import json
+import os
 import shutil
 from pathlib import Path
 import sys
@@ -13,6 +14,8 @@ from homelab_lib.source import ROOT, synthetic_model
 
 @unittest.skipUnless(shutil.which("docker"), "Docker CLI parser not installed")
 class ModularSyntaxTests(unittest.TestCase):
+    @unittest.skipUnless(os.environ.get("HOMELAB_VERIFY_PERSONAL_COMPOSE") == "1",
+                         "host drift check is opt-in; public source does not migrate the installed Compose")
     def test_current_compose_and_catalog_match_without_real_env(self):
         if not (ROOT / "docker-compose.yml").exists():
             self.skipTest("public bundle does not contain the installed Compose")
