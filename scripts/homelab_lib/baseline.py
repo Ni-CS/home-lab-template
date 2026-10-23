@@ -49,7 +49,8 @@ def export(destination, manifest_path=None):
         source, target = safe_relative(item["source"]), safe_relative(item["destination"])
         require(str(target) not in names, "destino público duplicado")
         names.add(str(target))
-        require(source.parts[0] in {"catalog", "templates", "scripts", "tests", "docs", "apps", "examples"}, "origem pública inválida")
+        require(source.parts[0] in {"catalog", "templates", "scripts", "tests", "docs", "apps", "examples"}
+                or str(source) in {"README.md", "AGENTS.md", ".gitignore", ".dockerignore"}, "origem pública inválida")
         require(not any(".local." in part for part in source.parts), "configuração privada fora do baseline")
         absolute = ROOT / source
         require(not any(p.is_symlink() for p in [absolute, *absolute.parents] if p != ROOT.parent),
@@ -68,5 +69,11 @@ def export(destination, manifest_path=None):
               "scope": "44-service-inventory-and-partial-portable-templates", "runtime_verified": False}
     with (destination / "PUBLIC-MANIFEST.json").open("x") as stream:
         json.dump(record, stream, indent=2)
+    # Re-export remains usable after template README/ignore files move to the root.
+    public_manifest = destination / "catalog/public-files.json"
+    public_manifest.parent.mkdir(parents=True, exist_ok=True)
+    with public_manifest.open("x") as stream:
+        json.dump({"schema_version": 1, "files": [
+            {"source": str(p), "destination": str(p), "sha256": h} for p, _c, h in checked]}, stream, indent=2)
     return {"exported_files": len(checked), "git_modified": False, "private_config_paths_copied": False, "approved_files_hash_matched": True,
             "installed_compose_copied": False, "destination_printed": False}

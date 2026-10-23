@@ -49,6 +49,17 @@ class PublicBaselineTests(unittest.TestCase):
         with self.assertRaises(Refused):self.export()
         self.assertFalse((self.folder / "bundle").exists())
 
+    def test_export_can_be_exported_again_with_its_rebased_allowlist(self):
+        readme = self.root / "templates/public/README.md"
+        readme.parent.mkdir(parents=True)
+        readme.write_text("Public example only\n")
+        self.items.append({"source": "templates/public/README.md", "destination": "README.md",
+                           "sha256": hashlib.sha256(readme.read_bytes()).hexdigest()})
+        self.export()
+        with patch.object(baseline, "ROOT", self.folder / "bundle"):
+            baseline.export(self.folder / "bundle-again")
+        self.assertEqual((self.folder / "bundle-again/README.md").read_text(), "Public example only\n")
+
     def test_private_source_paths_and_parent_escape_refused(self):
         for name in ["configs/private.db", ".env", "../escape", "/etc/passwd", ".git/config"]:
             with self.assertRaises(Refused):baseline.safe_relative(name)
