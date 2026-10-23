@@ -1,0 +1,33 @@
+{
+  "cpu": {
+    "image": "homelab-portal:local",
+    "build": {
+      "context": "@ROOT@",
+      "dockerfile": "apps/portal/Dockerfile"
+    },
+    "restart": "no",
+    "read_only": true,
+    "user": "65532:65532",
+    "cap_drop": [
+      "ALL"
+    ],
+    "security_opt": [
+      "no-new-privileges:true"
+    ],
+    "ports": [
+      "127.0.0.1:3100:8080"
+    ],
+    "volumes": [
+      "@STATE@/portal:/config:ro"
+    ],
+    "logging": {
+      "driver": "local",
+      "options": {
+        "max-size": "10m",
+        "max-file": "3",
+        "compress": "true"
+      }
+    }
+  },
+  "gpu": null
+}

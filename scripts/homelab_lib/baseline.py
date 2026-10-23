@@ -49,7 +49,8 @@ def export(destination, manifest_path=None):
         source, target = safe_relative(item["source"]), safe_relative(item["destination"])
         require(str(target) not in names, "destino público duplicado")
         names.add(str(target))
-        require(source.parts[0] in {"catalog", "templates", "scripts", "tests", "docs"}, "origem pública inválida")
+        require(source.parts[0] in {"catalog", "templates", "scripts", "tests", "docs", "apps", "examples"}, "origem pública inválida")
+        require(not any(".local." in part for part in source.parts), "configuração privada fora do baseline")
         absolute = ROOT / source
         require(not any(p.is_symlink() for p in [absolute, *absolute.parents] if p != ROOT.parent),
                 "symlink em origem pública")

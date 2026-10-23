@@ -15,3 +15,10 @@ __pycache__/
 homelab-reset-*.json
 .Rhistory
 .RData
+
+node_modules/
+.next/
+apps/portal/dist/
+apps/portal/screenshots/
+*.tsbuildinfo
+PUBLIC-MANIFEST.json

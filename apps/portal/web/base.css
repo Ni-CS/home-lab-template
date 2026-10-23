@@ -1,0 +1,2 @@
+/* No remote fonts, trackers, images or runtime CSS dependencies. */
+html{scroll-behavior:smooth}::selection{color:#f1f6ff;background:#385982}

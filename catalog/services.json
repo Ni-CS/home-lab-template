@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_shape_sha256": "ad33d795e477c6d9ef228b772a8dbf985ddd8f1601723761513f9a11164dfdc6",
+  "source_shape_sha256": "f59a72827bdb67734edc0ad45e246ffa87a26fee080ccc8b4ec13616f2a5b3fa",
   "services": [
     {
       "id": "actual-budget",
@@ -20,7 +20,7 @@
         "image": "actualbudget/actual-server:latest",
         "build": false,
         "profiles": [
-          "finance"
+          "reinstall-finance"
         ],
         "dependencies": [],
         "ports": [
@@ -148,7 +148,7 @@
         "image": "lscr.io/linuxserver/bazarr:latest",
         "build": false,
         "profiles": [
-          "arr"
+          "reinstall-arr"
         ],
         "dependencies": [],
         "ports": [
@@ -555,7 +555,7 @@
         "image": "ghcr.io/flaresolverr/flaresolverr:latest",
         "build": false,
         "profiles": [
-          "arr"
+          "reinstall-arr"
         ],
         "dependencies": [],
         "ports": [
@@ -607,7 +607,7 @@
         "image": null,
         "build": true,
         "profiles": [
-          "ai"
+          "reinstall-ai"
         ],
         "dependencies": [],
         "ports": [
@@ -1088,7 +1088,7 @@
         "image": "fallenbagel/jellyseerr:latest",
         "build": false,
         "profiles": [
-          "media"
+          "reinstall-arr"
         ],
         "dependencies": [],
         "ports": [
@@ -1613,7 +1613,7 @@
         "image": "ollama/ollama:latest",
         "build": false,
         "profiles": [
-          "ai"
+          "reinstall-ai"
         ],
         "dependencies": [],
         "ports": [
@@ -1674,7 +1674,7 @@
         "image": "ghcr.io/open-webui/open-webui:main",
         "build": false,
         "profiles": [
-          "ai"
+          "reinstall-ai"
         ],
         "dependencies": [
           "ollama"
@@ -1998,7 +1998,7 @@
         "image": "lscr.io/linuxserver/radarr:latest",
         "build": false,
         "profiles": [
-          "arr"
+          "reinstall-arr"
         ],
         "dependencies": [],
         "ports": [
@@ -2196,7 +2196,7 @@
         "image": "ghcr.io/securo-finance/securo-backend:latest",
         "build": false,
         "profiles": [
-          "finance"
+          "reinstall-finance"
         ],
         "dependencies": [
           "securo-db",
@@ -2276,7 +2276,7 @@
         "image": "ghcr.io/securo-finance/securo-backend:latest",
         "build": false,
         "profiles": [
-          "finance"
+          "reinstall-finance"
         ],
         "dependencies": [
           "securo-db",
@@ -2356,7 +2356,7 @@
         "image": "ghcr.io/securo-finance/securo-backend:latest",
         "build": false,
         "profiles": [
-          "finance"
+          "reinstall-finance"
         ],
         "dependencies": [
           "securo-db",
@@ -2433,7 +2433,7 @@
         "image": "pgvector/pgvector:pg16",
         "build": false,
         "profiles": [
-          "finance"
+          "reinstall-finance"
         ],
         "dependencies": [],
         "ports": [],
@@ -2484,7 +2484,7 @@
         "image": "ghcr.io/securo-finance/securo-frontend:latest",
         "build": false,
         "profiles": [
-          "finance"
+          "reinstall-finance"
         ],
         "dependencies": [
           "securo-backend"
@@ -2538,7 +2538,7 @@
         "image": "redis:7-alpine",
         "build": false,
         "profiles": [
-          "finance"
+          "reinstall-finance"
         ],
         "dependencies": [],
         "ports": [],
@@ -2580,7 +2580,7 @@
         "image": "lscr.io/linuxserver/sonarr:latest",
         "build": false,
         "profiles": [
-          "arr"
+          "reinstall-arr"
         ],
         "dependencies": [],
         "ports": [

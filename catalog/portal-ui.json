@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "services": {
+    "immich-server": {"title":"Immich","group":"Biblioteca","icon":"aperture","description":"As memórias que merecem ficar.","eyebrow":"FOTOGRAFIA","favorite":true,"art":"memories"},
+    "navidrome": {"title":"Navidrome","group":"Mídia","icon":"music","description":"Sua coleção. Seu ritmo.","eyebrow":"MÚSICA","favorite":true,"art":"sound"},
+    "jellyfin": {"title":"Jellyfin","group":"Mídia","icon":"play","description":"Um bom momento para dar play.","eyebrow":"CINEMA EM CASA","favorite":true,"art":"cinema"},
+    "filebrowser": {"title":"FileBrowser","group":"Biblioteca","icon":"folder","description":"Tudo no seu lugar.","eyebrow":"ARQUIVOS","favorite":true,"art":"files"},
+    "kavita": {"title":"Kavita","group":"Biblioteca","icon":"book","description":"Entre páginas e novas ideias.","eyebrow":"LEITURA","favorite":true,"art":"reading"},
+    "docmost": {"title":"Docmost","group":"Biblioteca","icon":"notebook","description":"Espaço para o que vem a seguir.","eyebrow":"CONHECIMENTO","favorite":true,"art":"notes"},
+    "uptime-kuma": {"title":"Uptime Kuma","group":"Sistema","icon":"activity","description":"Acompanhar disponibilidade","eyebrow":"MONITORAMENTO","favorite":false,"art":"system"},
+    "glances": {"title":"Glances","group":"Sistema","icon":"chart","description":"Explorar recursos do servidor","eyebrow":"RECURSOS","favorite":false,"art":"system"},
+    "homepage": {"title":"Homepage","group":"Sistema","icon":"grid","description":"Seu painel técnico de reserva","eyebrow":"FALLBACK","favorite":false,"art":"system"},
+    "adguard": {"title":"AdGuard","group":"Admin","icon":"shield","description":"DNS e proteção da rede","eyebrow":"REDE","favorite":false,"art":"system"},
+    "npm": {"title":"Nginx Proxy Manager","group":"Admin","icon":"network","description":"Gerenciar rotas e certificados","eyebrow":"ACESSO","favorite":false,"art":"system"}
+  }
+}

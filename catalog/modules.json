@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "services": [
+    {
+      "id": "portal",
+      "category": "portal",
+      "execution": "on-demand",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": 64
+      },
+      "observed": {
+        "image": "homelab-portal:local",
+        "build": true,
+        "profiles": [
+          "portal"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 8080,
+            "published": 3100,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": true
+          }
+        ],
+        "environment_names": [],
+        "gpu": false,
+        "healthcheck_declared": true,
+        "restart": "no",
+        "logging": {
+          "driver": "local",
+          "options": {
+            "max-size": "10m",
+            "max-file": "3",
+            "compress": "true"
+          }
+        }
+      },
+      "template": "templates/modular/portal.json",
+      "backup": "Private portal preferences only; no application databases. Browser favorites are per-device.",
+      "post_install": [
+        "portal healthz",
+        "private route LAN and tailnet",
+        "check configured links on mobile"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 3100,
+        "scheme": "http",
+        "path": "/"
+      }
+    }
+  ]
+}

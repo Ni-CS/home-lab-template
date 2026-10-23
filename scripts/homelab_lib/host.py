@@ -4,7 +4,7 @@ import json
 import os
 from pathlib import Path
 
-from .catalog import require, resolve
+from .catalog import require, resolve, entries
 from .source import Refused, run
 
 
@@ -53,7 +53,7 @@ def check(data, selected, hardware, site):
             report["issues"].append(alias + ": metadata/mount/capacity unverified")
     try:
         busy = listening_ports()
-        by_id = {s["id"]: s for s in data["services"]}
+        by_id = {s["id"]: s for s in entries(data)}
         conflicts = [{"service": n, "port": p["published"], "protocol": p["protocol"]}
                      for n in ordered for p in by_id[n]["observed"]["ports"]
                      if (p["published"], p["protocol"]) in busy]

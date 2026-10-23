@@ -1,0 +1,13 @@
+# Portal build context: explicit public source only. No application data or .env.
+**
+!apps/
+!apps/portal/
+!apps/portal/manage.py
+!apps/portal/Dockerfile
+!apps/portal/config.example.json
+!apps/portal/web/
+!apps/portal/web/**
+!catalog/
+!catalog/services.json
+!catalog/portal-ui.json
+**/*.local.*

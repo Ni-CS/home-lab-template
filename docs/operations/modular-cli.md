@@ -123,3 +123,13 @@ sintético, sem .env/daemon. CPU/GPU foram renderizados, não executados. Runtim
 saúde, compilação e LAN/tailnet permanecem não verificados. Reverter somente hunks
 novos/artefatos desta evolução; não resetar a árvore suja nem apagar dados. Mudanças
 de runtime futuras têm rollback próprio e autorização antes de interrupções.
+
+## Portal opcional
+
+`plan --select portal`, `render --select portal --site ...` e o wizard incluem o
+novo módulo CPU isolado. Os 44 serviços de origem e 11 templates anteriores seguem
+intactos como inventário; a extensão tem seu próprio descritor. O instalador cria
+apenas configuração de URLs/preferências para ele. Fonte e operação independente:
+[portal](../../apps/portal/README.md). Nenhuma rota LAN/tailnet ou Homepage é
+substituída. Start do Compose legado com `--profile '*'` inclui módulos removidos:
+use seleções explícitas; profiles de reinstalação são opt-in.
