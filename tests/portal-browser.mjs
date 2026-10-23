@@ -37,16 +37,22 @@ await js("location.hash='inicio'");await wait(100);
 await wait(3600); // Let the real confirmation toast expire before visual capture.
 for (const path of ['/portal.local.json','/manage.py','/../.env','/configs/homepage/services.yaml']) assert.equal((await fetch(base+path)).status,404,'private/source path blocked');
 assert.equal((await fetch(base+'/healthz')).status,200,'portal health only');
-const output=process.env.PORTAL_SCREENSHOT_DIR || '/tmp/homelab-portal-captures';await mkdir(output,{recursive:true});
-for(const [label,width,height,mobile]of [['desktop',1440,1260,false],['tablet',820,1180,true],['mobile',390,844,true],['small-mobile',320,740,true]]){
+await js('document.fonts.ready');assert.equal(await js("document.fonts.check('900 40px \"Noctis Display\"')"),true,'local licensed display font loaded');
+assert.equal(await js("getComputedStyle(document.body).backgroundColor"),'rgb(7, 7, 7)','NOCTIS palette');
+assert.equal(await js("document.getElementById('cathedral-art').closest('[aria-hidden=true]')!==null"),true,'decorative ASCII hidden from screen readers');
+const output=process.env.PORTAL_SCREENSHOT_DIR || '/tmp/homelab-noctis-captures';await mkdir(output,{recursive:true});
+for(const [label,width,height,mobile]of [['desktop',1440,1260,false],['tablet',820,1180,true],['mobile',390,844,true],['small-mobile',360,800,true],['zoom-reflow',720,1000,true]]){
  await cdp('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile});await wait(100);
  assert.equal(await js('document.documentElement.scrollWidth<=window.innerWidth'),true,`${label}: no horizontal overflow`);
+ assert.equal(await js("(()=>{const range=document.createRange();range.selectNodeContents(document.querySelector('.hero h1 em'));return range.getBoundingClientRect().right<=document.querySelector('.hero').getBoundingClientRect().right-8;})()"),true,`${label}: outlined title fully visible`);
+ if(label==='mobile'){await js("document.getElementById('sidebar-toggle').click()");assert.equal(await js("document.getElementById('sidebar-toggle').getAttribute('aria-expanded')"),'true','drawer opens');assert.equal(await js("document.getElementById('site-sidebar').inert"),false,'drawer accessible');await js("document.getElementById('sidebar-close').click()");assert.equal(await js("document.getElementById('site-sidebar').inert"),true,'closed drawer is not focusable');}
  if(label==='desktop'||label==='mobile'){
-  const result=await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});await writeFile(`${output}/${label}.png`,Buffer.from(result.data,'base64'));
+  await cdp('Input.dispatchMouseEvent',{type:'mousePressed',x:width-8,y:90,button:'left',clickCount:1});await cdp('Input.dispatchMouseEvent',{type:'mouseReleased',x:width-8,y:90,button:'left',clickCount:1});
+  const result=await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:label==='desktop'});await writeFile(`${output}/${label}.png`,Buffer.from(result.data,'base64'));
  }
 }
 await cdp('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
 assert.equal(await js("getComputedStyle(document.querySelector('.service-card')).transitionDuration"),'0s','reduced motion');
 assert.deepEqual(errors,[],'no browser exceptions');
-console.log('PASS: real Chrome navigation, search, favorites persistence, private links, Admin, 4 viewports, reduced motion. Desktop/mobile captures saved.');
+console.log('PASS: real Chrome navigation, search, favorites persistence, private links, Admin, 5 viewports, local font, mobile drawer, reduced motion. Desktop/mobile captures saved.');
 ws.close();

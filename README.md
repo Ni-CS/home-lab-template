@@ -1,4 +1,4 @@
-# HomeLab modular review baseline
+# HomeLab NOCTIS
 
 Functional planning tools and a 44-service declaration catalog. Eleven modules
 have Compose preview templates. This bundle is not a full migration or a copy of
@@ -35,3 +35,7 @@ Homepage is retained as fallback. No installed routes or containers are changed.
 The legacy docker-compose.yml inherited from main remains historical. It does
 not represent the local 44-service deployment; use the CLI-generated previews
 for new installations and review existing deployments separately.
+
+NOCTIS uses original ASCII artwork, a monochrome interface and a self-hosted OFL
+display font. Search, favorites and private configuration retain the existing
+contract. [Desktop](docs/previews/noctis-desktop.png) · [Mobile](docs/previews/noctis-mobile.png).

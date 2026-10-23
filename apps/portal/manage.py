@@ -13,7 +13,7 @@ from urllib.parse import urlsplit
 
 APP = Path(__file__).resolve().parent
 ROOT = APP.parent.parent
-ASSETS = {'index.html', 'styles.css', 'base.css', 'app.js', 'model.js', 'mark.svg', 'services.json'}
+ASSETS = {'index.html', 'styles.css', 'base.css', 'app.js', 'model.js', 'mark.svg', 'services.json', 'art.js', 'grain.svg', 'display.ttf', 'OFL.txt'}
 ICONS = {'aperture', 'music', 'play', 'folder', 'book', 'notebook', 'activity', 'chart', 'grid', 'shield', 'network'}
 
 
@@ -156,7 +156,7 @@ def main():
     try:
         if args.command == 'build':
             build(args.output_dir)
-            print('Portal built: 7 public assets; no local config copied.')
+            print(f'Portal built: {len(ASSETS)} public assets; no local config copied.')
         else:
             ip = ipaddress.ip_address(args.bind)
             if ip.version != 4 or ip.is_global or ip.is_multicast:

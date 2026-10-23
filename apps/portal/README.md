@@ -1,7 +1,7 @@
 # Portal HomeLab
 
 Portal pessoal responsivo, sem dependências npm, fontes remotas, rastreadores ou
-telemetria inventada. Sete assets públicos gerados a partir do catálogo sanitizado.
+telemetria inventada. Assets públicos gerados a partir do catálogo sanitizado.
 Favoritos, busca com Ctrl/Cmd K, navegação por atividade, preferências por navegador.
 Admin contém **somente links**; os destinos exigem sua própria autenticação.
 
@@ -65,7 +65,7 @@ docker run -d --name homelab-portal --read-only --user 65532:65532 \
   homelab-portal:local
 ```
 
-O preview é **loopback** e não fica acessível no celular por Tailscale ainda.
+O preview padrão usa **loopback**. O listener Tailscale adicional requer autorização.
 A publicação LAN/tailnet requer aprovação separada da rota/bind e verificação no
 celular. Um NPM em container não acessa o loopback do host como seu próprio
 localhost: definir uma rede Docker compartilhada explicitamente e usar o serviço
@@ -74,3 +74,15 @@ Funnel, abrir portas no roteador nem alterar DNS/ACL automaticamente. O portal
 não autentica visitantes; limitar acesso à LAN/tailnet confiável. Homepage mantém
 sua configuração/URL atual como fallback. Rollback: manter o acesso ao Homepage;
 nenhuma rota atual foi substituída.
+
+## Identidade NOCTIS
+
+Paleta preto/pedra/marfim, títulos sólidos e contornados, arte ASCII original em
+`web/art.js`, textura SVG leve e fonte Barlow Condensed Black auto-hospedada.
+A licença está em `web/OFL.txt`; origem/hash em `FONTS.md`. Navegação, busca,
+favoritos e preferências privadas mantêm o mesmo contrato. Drawer recolhido no
+mobile fica fora da ordem de foco; Escape fecha e devolve o foco ao botão.
+Os estados continuam desconhecidos. O preview aprovado mantém a porta e as rotas;
+Homepage permanece fallback. Rollback visual: restaurar o build anterior.
+
+Capturas reais: [desktop](../../docs/previews/noctis-desktop.png) · [mobile](../../docs/previews/noctis-mobile.png).

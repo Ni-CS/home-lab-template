@@ -133,3 +133,17 @@ apenas configuração de URLs/preferências para ele. Fonte e operação indepen
 [portal](../../apps/portal/README.md). Nenhuma rota LAN/tailnet ou Homepage é
 substituída. Start do Compose legado com `--profile '*'` inclui módulos removidos:
 use seleções explícitas; profiles de reinstalação são opt-in.
+
+
+## PRs e permissão do conector
+
+`403 Resource not accessible by integration` exige revisar a instalação da App
+na **conta correta**, acesso a este repositório e **Pull requests: Read and write**.
+Em GitHub → Settings → Applications → Installed GitHub Apps, revisar a App usada
+pelo conector e aceitar uma atualização de permissões, se oferecida; depois,
+reautorizar a conexão. Permissões que a App não solicita precisam ser habilitadas
+pelo fornecedor: não criar tokens no código nem ampliar permissões locais para
+contornar o erro. A conexão desta sessão não expôs instalação administrável do repo.
+[Autorização vs instalação](https://docs.github.com/en/apps/using-github-apps/authorizing-github-apps) ·
+[Permissões necessárias](https://docs.github.com/en/rest/authentication/permissions-required-for-github-apps).
+Até a correção, usar o link de comparação web da branch revisada para criar o PR.

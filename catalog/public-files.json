@@ -9,7 +9,7 @@
     {
       "source": "docs/operations/modular-cli.md",
       "destination": "docs/operations/modular-cli.md",
-      "sha256": "f1d3ac6052b00d670a550686efa6a2640868b8b2265f8d3ba15c412b23ba6bd2"
+      "sha256": "9c5aaedf453d28534411777836afbae9b1f0a931bfc76dc8c433c31ff879c0df"
     },
     {
       "source": "scripts/cleanup-plan.py",
@@ -184,7 +184,7 @@
     {
       "source": "README.md",
       "destination": "README.md",
-      "sha256": "b2a329a227efb59f56290f770bd669806304abd435cbf0c6673dd7c5ff3e3d97"
+      "sha256": "193b895173380a2137409208b7cf927573f17d9cb98805b67725bbbba2867eee"
     },
     {
       "source": ".gitignore",
@@ -204,7 +204,7 @@
     {
       "source": "catalog/portal-ui.json",
       "destination": "catalog/portal-ui.json",
-      "sha256": "2dfbf25555dd117f6d3ce9b475a4e311147cc266752300cd3e9cc05e60d29ab6"
+      "sha256": "7860e84b01f220d4068ceedfcbf4029533596571ec997e1687e763fd30ea01f2"
     },
     {
       "source": "templates/modular/portal.json",
@@ -214,7 +214,7 @@
     {
       "source": "apps/portal/manage.py",
       "destination": "apps/portal/manage.py",
-      "sha256": "edaee777139e29f4127a7e4bdce8f3317b6d09628404506a8f2b53ba52de0f7f"
+      "sha256": "d53f1d845030c251c4f08bd065176b5760a327327fa7b5f0b9ef69f12627fd64"
     },
     {
       "source": "apps/portal/Dockerfile",
@@ -229,12 +229,12 @@
     {
       "source": "apps/portal/README.md",
       "destination": "apps/portal/README.md",
-      "sha256": "c1013db6005f2b299b382f9fbfaddb15323d1543f927a89764ce4b16758c95a7"
+      "sha256": "1e90a91ac1d46bf6c4120712634e6d55fdbc1f12fb4432cc21214decc2647bc7"
     },
     {
       "source": "tests/test_portal.py",
       "destination": "tests/test_portal.py",
-      "sha256": "661ee5270d65755df7ebec2f9a61510c2454b825e6f9dee2667dfa445b3a2ffc"
+      "sha256": "c49fd3f1f28188d4c75ead4c539ce74854b792009190248e67074f55137240c0"
     },
     {
       "source": "tests/portal-model.mjs",
@@ -244,7 +244,7 @@
     {
       "source": "tests/portal-browser.mjs",
       "destination": "tests/portal-browser.mjs",
-      "sha256": "99cd0eaf5f19cfb9885d430cda2b19059c97fc58720e5354dbc0b2132a886d4f"
+      "sha256": "51b24bfd770c0857add54a3e6d333dc13b50e5858919f6fb9ae1719668baaa74"
     },
     {
       "source": "docs/decisions/ADR-003-private-portal.md",
@@ -259,22 +259,22 @@
     {
       "source": "apps/portal/web/app.js",
       "destination": "apps/portal/web/app.js",
-      "sha256": "a348afb8911c28f790b922d3e7f8a4fb52079f44de95e2402bfdab7bde2b2cb7"
+      "sha256": "8642c091592ec0cfcb710fe12d407c81cce5801130cd47866c2cddc7797d3a00"
     },
     {
       "source": "apps/portal/web/base.css",
       "destination": "apps/portal/web/base.css",
-      "sha256": "b8a6b40862b16c47e9f16380a77fd08366b3611bc73915e2e47ea4ec290adba1"
+      "sha256": "5888499f66b3ba3c5c28e1958ec01ec66dd27f802cfb46f234da8139052f543b"
     },
     {
       "source": "apps/portal/web/index.html",
       "destination": "apps/portal/web/index.html",
-      "sha256": "8731e9507d59c0298f35d5653932f1c348502dfbcafb5c1b6eb16b174fcaa561"
+      "sha256": "971376d8f5beb1b886128882fcb028e4641aaa76aa66b8537498a50d157c3121"
     },
     {
       "source": "apps/portal/web/mark.svg",
       "destination": "apps/portal/web/mark.svg",
-      "sha256": "9a56bf713d88dfc904a37a1cf297b3dd5801daa5264797c05d42fc717dda6635"
+      "sha256": "2b9d450d1a1b28b7116fb581d1bde89de7488d942f4d889c3654bcb3ab07e01a"
     },
     {
       "source": "apps/portal/web/model.js",
@@ -284,12 +284,47 @@
     {
       "source": "apps/portal/web/styles.css",
       "destination": "apps/portal/web/styles.css",
-      "sha256": "6f829a5f4f14ac8237291a8079dccbd6a88ce5aa5aa0a31ac515c7812a95c555"
+      "sha256": "67e2fe4618872a2ef3863b2293a6bd22b2268ba7e46ac51b1651b195d6f5c1ce"
     },
     {
       "source": ".dockerignore",
       "destination": ".dockerignore",
       "sha256": "57f1e697a5bb39a1c8012f4774e6344a5e23a003f8fe8ba37b487f73166e51a3"
+    },
+    {
+      "source": "apps/portal/FONTS.md",
+      "destination": "apps/portal/FONTS.md",
+      "sha256": "23c411fc9ebe0f3bee39c1b0b4b765b5f739c524b28dfb20a55fde33b92088e0"
+    },
+    {
+      "source": "apps/portal/web/OFL.txt",
+      "destination": "apps/portal/web/OFL.txt",
+      "sha256": "10b0e6bb43166a50fbe7cde2895bd7f703738a5da843acb5c97c95dc9ea26817"
+    },
+    {
+      "source": "apps/portal/web/art.js",
+      "destination": "apps/portal/web/art.js",
+      "sha256": "7b351e855702225985d72674bd89313bb715e4078a1429f7af6d423e8fa8b02a"
+    },
+    {
+      "source": "apps/portal/web/display.ttf",
+      "destination": "apps/portal/web/display.ttf",
+      "sha256": "e74b750df582c608f35db467b711b2b60d2217618e85e60b72b42dfd00446cab"
+    },
+    {
+      "source": "apps/portal/web/grain.svg",
+      "destination": "apps/portal/web/grain.svg",
+      "sha256": "77138ad49c8ac7128408fbab898239b977ff63120448f665da707141986443fa"
+    },
+    {
+      "source": "docs/previews/noctis-desktop.png",
+      "destination": "docs/previews/noctis-desktop.png",
+      "sha256": "118ac7c2f906f75a4ef06a768f8298ed75a58af67d67ffbca8695f86edafc4cd"
+    },
+    {
+      "source": "docs/previews/noctis-mobile.png",
+      "destination": "docs/previews/noctis-mobile.png",
+      "sha256": "ea32c75a4dfc17a9ec53da9b172b1a9ee05abc2a8bf05bd744f27664e145ba49"
     }
   ]
 }

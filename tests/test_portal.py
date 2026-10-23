@@ -27,6 +27,9 @@ class PortalTests(unittest.TestCase):
             self.assertEqual(len(services), 11)
             self.assertNotIn('securo', (out / 'services.json').read_text())
             self.assertNotIn('100.', (out / 'services.json').read_text())
+            self.assertTrue((out / 'OFL.txt').stat().st_size > 1000)
+            self.assertTrue((out / 'display.ttf').stat().st_size > 1000)
+            self.assertNotIn('portal.local.json', {p.name for p in out.iterdir()})
             self.assertEqual(next(s for s in services if s['id'] == 'npm')['navigation']['port'], 81)
             with self.assertRaises(ValueError):portal.build(out)
 
