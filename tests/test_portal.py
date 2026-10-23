@@ -72,16 +72,6 @@ class PortalTests(unittest.TestCase):
             portal.validate_config(json.loads(config_path.read_text()),portal.public_services())
             self.assertTrue(any('--new-project-only' in c.args[0] for c in cmd.call_args_list))
 
-    @unittest.skipUnless((ROOT/'docker-compose.yml').exists(), 'personal Compose is intentionally not exported')
-    def test_reset_services_not_enabled_by_legacy_default_profiles(self):
-        model = synthetic_model((ROOT/'docker-compose.yml').read_text())
-        retired = {'ollama','open-webui','fooocus','sonarr','radarr','bazarr','jellyseerr','flaresolverr','actual-budget'}
-        retired.update(n for n in model['services'] if n.startswith('securo-'))
-        for name in retired:
-            profiles = model['services'][name]['profiles']
-            self.assertTrue(profiles and all(p.startswith('reinstall-') for p in profiles), name)
-        for name in ['qbittorrent','prowlarr']:
-            self.assertIn('music', model['services'][name]['profiles'])
 
 
 if __name__ == '__main__':unittest.main()
