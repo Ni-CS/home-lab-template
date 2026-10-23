@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "source": "catalog/services.json",
+      "destination": "catalog/services.json",
+      "sha256": "770ef3a81526c0d9b7829ffd315ae50f221e54799727708a24817a606f7098cc"
+    },
+    {
+      "source": "docs/operations/modular-cli.md",
+      "destination": "docs/operations/modular-cli.md",
+      "sha256": "0083af553f213975604c5b2b4f96d4b653862a314e9403607e6a81c778d65d58"
+    },
+    {
+      "source": "scripts/cleanup-plan.py",
+      "destination": "scripts/cleanup-plan.py",
+      "sha256": "ebf42c4baa8231e5691239b4ea8458b43e52ede6ba8a590ec4df1195591862fb"
+    },
+    {
+      "source": "scripts/compose-guard.py",
+      "destination": "scripts/compose-guard.py",
+      "sha256": "80acb3d9f6dea87774dff7b39b646002444267b847a5323878013ecd195ffd87"
+    },
+    {
+      "source": "scripts/homelab.py",
+      "destination": "scripts/homelab.py",
+      "sha256": "8591262f0a1cefb9a915018f8ab5243d0ccfcc11d0e80bd4a1ce52e0da16bb03"
+    },
+    {
+      "source": "scripts/homelab_lib/__init__.py",
+      "destination": "scripts/homelab_lib/__init__.py",
+      "sha256": "52d51623a553d10fe1b49e9c63e19d203f764815e793344a8c4d3aca293aca08"
+    },
+    {
+      "source": "scripts/homelab_lib/baseline.py",
+      "destination": "scripts/homelab_lib/baseline.py",
+      "sha256": "ad79bba42b5f2d12656923fa31d054a322dd9fe96e2932b35a3d34b9095f0401"
+    },
+    {
+      "source": "scripts/homelab_lib/catalog.py",
+      "destination": "scripts/homelab_lib/catalog.py",
+      "sha256": "496f3c72b6158d4e495c4053009a29a9365ae8e40191de026e7abac468820bc8"
+    },
+    {
+      "source": "scripts/homelab_lib/cli.py",
+      "destination": "scripts/homelab_lib/cli.py",
+      "sha256": "260bdeebc7968a9be67e9f5f09cd39e74ad57c1b4da413b3597cd79a21ddf07b"
+    },
+    {
+      "source": "scripts/homelab_lib/host.py",
+      "destination": "scripts/homelab_lib/host.py",
+      "sha256": "a9711ba6c9474c5b6c5a65a5f5f463dc576a85e806bbcfa4749d1fd8c11b6aa9"
+    },
+    {
+      "source": "scripts/homelab_lib/install.py",
+      "destination": "scripts/homelab_lib/install.py",
+      "sha256": "bcdce3b3d50ead16ab25b1748bac2380d31d3f4800de49219b3dfa3b90c3b0ec"
+    },
+    {
+      "source": "scripts/homelab_lib/latex.py",
+      "destination": "scripts/homelab_lib/latex.py",
+      "sha256": "4f891b29ee0dbb8b9ad6cb622b158564f47757e7d2e1f8cdd15313763db3008c"
+    },
+    {
+      "source": "scripts/homelab_lib/reset.py",
+      "destination": "scripts/homelab_lib/reset.py",
+      "sha256": "27d4c22a4ba0334a1617ad7087b113606d18afca1499360b317ca1af965e8d39"
+    },
+    {
+      "source": "scripts/homelab_lib/source.py",
+      "destination": "scripts/homelab_lib/source.py",
+      "sha256": "ee07f06abea5280982ec542428270d12b6a88dbe33615913b348150c819fe791"
+    },
+    {
+      "source": "scripts/homelab_lib/wizard.py",
+      "destination": "scripts/homelab_lib/wizard.py",
+      "sha256": "416d710124bf5bee24c35eda5264e1b2cb1d77a655ef5c401017c23a65ae9426"
+    },
+    {
+      "source": "templates/homepage/custom.css",
+      "destination": "templates/homepage/custom.css",
+      "sha256": "c8d25325d0b1ae408a2184ca276bcaffeba7568dc5282d57a2e864560d960e02"
+    },
+    {
+      "source": "templates/homepage/settings.example.yaml",
+      "destination": "templates/homepage/settings.example.yaml",
+      "sha256": "d377babd8d597c79e27feded3b45467e541e3f65307b075e0126252b4596345f"
+    },
+    {
+      "source": "templates/modular/adguard.json",
+      "destination": "templates/modular/adguard.json",
+      "sha256": "9e68233ae244daf14a8e01de955fa42e3f2a8c69ce0f8897b158aff628552c36"
+    },
+    {
+      "source": "templates/modular/filebrowser.json",
+      "destination": "templates/modular/filebrowser.json",
+      "sha256": "e91fe37b91b089ed6696b582b8038b94380980c81c384096ece77eae8fac13c7"
+    },
+    {
+      "source": "templates/modular/homepage.json",
+      "destination": "templates/modular/homepage.json",
+      "sha256": "8a047b1424c8aefc28d00cfc44ecbcdd29e5826e8d46acdf3681de24c204d117"
+    },
+    {
+      "source": "templates/modular/jellyfin.json",
+      "destination": "templates/modular/jellyfin.json",
+      "sha256": "6b80e543d7d94797712f9a6d3fec73f1dec0b3601e2442970a9fa44b1e42f841"
+    },
+    {
+      "source": "templates/modular/navidrome.json",
+      "destination": "templates/modular/navidrome.json",
+      "sha256": "8295089482a8513fdac56652a82a6a6613823ad89aff73a5d40cf090d34f7726"
+    },
+    {
+      "source": "templates/modular/npm.json",
+      "destination": "templates/modular/npm.json",
+      "sha256": "f416ca66354fb8f89a9fe7fa79474168ed316e0d47227d836d9481b312be6da8"
+    },
+    {
+      "source": "templates/modular/ollama.json",
+      "destination": "templates/modular/ollama.json",
+      "sha256": "7b81a9af31efc1247b50ca9230d5dd542d0a944400210adaa3eee14662204fe3"
+    },
+    {
+      "source": "templates/modular/open-webui.json",
+      "destination": "templates/modular/open-webui.json",
+      "sha256": "bcfbe023b50a15337ebea177a47284876dbdff4f060af757a54b0ad36b8ac188"
+    },
+    {
+      "source": "templates/modular/prowlarr.json",
+      "destination": "templates/modular/prowlarr.json",
+      "sha256": "b4d8bc5650d9ac372e16381810b016a613acd2581e7d6d63817f054b2eb74514"
+    },
+    {
+      "source": "templates/modular/qbittorrent.json",
+      "destination": "templates/modular/qbittorrent.json",
+      "sha256": "cc4d20d2a742bea44105b5825f7f6cf4c5e2a6f8851f2f5a6908a3cf2bd44dab"
+    },
+    {
+      "source": "templates/modular/site.example.json",
+      "destination": "templates/modular/site.example.json",
+      "sha256": "db826adfee0bf1be83842bf5cd8a91bdda8cf10c304887829ca9ac15b16dc9cd"
+    },
+    {
+      "source": "templates/modular/uptime-kuma.json",
+      "destination": "templates/modular/uptime-kuma.json",
+      "sha256": "8550c7776a9ef0449d352808ba1d6b84039c23fb56cd9c53f986e53b359ee197"
+    },
+    {
+      "source": "tests/test_cleanup_plan.py",
+      "destination": "tests/test_cleanup_plan.py",
+      "sha256": "a0d1c7f33f198106d5c4eb4a23ad038bf898bc3f780097d39300a0495d4b20b7"
+    },
+    {
+      "source": "tests/test_modular_catalog.py",
+      "destination": "tests/test_modular_catalog.py",
+      "sha256": "2005e2dc8e01d8b470b5207952bc950b6addef62d825cb08697edc3c05d5a56d"
+    },
+    {
+      "source": "tests/test_modular_compose_syntax.py",
+      "destination": "tests/test_modular_compose_syntax.py",
+      "sha256": "90a4b5afda61e52adeaf1e780a35ae7faf7828af018cffd7b48cfcbbac978bc5"
+    },
+    {
+      "source": "tests/test_modular_install.py",
+      "destination": "tests/test_modular_install.py",
+      "sha256": "88ff33c55a1d2f7e114a7b14e4c72ad1b516eb8ea345107998fcbaecd569d284"
+    },
+    {
+      "source": "tests/test_public_baseline.py",
+      "destination": "tests/test_public_baseline.py",
+      "sha256": "09a5263c8af8101dc3afef095031c75420f7afcb5cab133c9f935a2502ffc77b"
+    },
+    {
+      "source": "tests/test_reset_manifests.py",
+      "destination": "tests/test_reset_manifests.py",
+      "sha256": "b85267813737e9e8be20a81d6342afaead491ef40cd71f70071202342087cbe7"
+    },
+    {
+      "source": "tests/test_wizard_latex.py",
+      "destination": "tests/test_wizard_latex.py",
+      "sha256": "dd1728f3dd4a4c2431dc70f1722017490edd8bb85c51aa40810c143cf900dab1"
+    },
+    {
+      "source": "README.md",
+      "destination": "README.md",
+      "sha256": "5ff3424c6a8adbd52b92f6fa74b1e2b649312222cf7368418ffab0f52397e4d9"
+    },
+    {
+      "source": ".gitignore",
+      "destination": ".gitignore",
+      "sha256": "f93b585e3e4243f5bdd6a3df06b4aa0f6b27b5eed10e67a2eb8966deea7537d5"
+    },
+    {
+      "source": "AGENTS.md",
+      "destination": "AGENTS.md",
+      "sha256": "d48b895dd9e887948891c5e00523494f21f973ec9bf5e14c80a30d50cf92e9d1"
+    }
+  ]
+}
