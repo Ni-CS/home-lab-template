@@ -31,3 +31,7 @@ An opt-in CPU portal adds search, favorites and private configurable links.
 The original 44-service inventory and eleven templates remain separate from the
 new portal module. See [preview, Docker and private access](apps/portal/README.md).
 Homepage is retained as fallback. No installed routes or containers are changed.
+
+The legacy docker-compose.yml inherited from main remains historical. It does
+not represent the local 44-service deployment; use the CLI-generated previews
+for new installations and review existing deployments separately.
