@@ -10,7 +10,7 @@ from .source import ROOT
 
 def interactive(data, site, destination):
     catalog.require(sys.stdin.isatty(), "instalador interativo exige terminal; use plan/render em automação")
-    available = [s["id"] for s in data["services"] if s["availability"] == "renderable" and s["execution"] == "on-demand"]
+    available = [s["id"] for s in catalog.entries(data) if s["availability"] == "renderable" and s["execution"] == "on-demand"]
     print("Módulos opcionais: " + ", ".join(available), file=sys.stderr)
     raw = input("Selecione IDs separados por vírgula (vazio = essenciais): ").strip()
     selected = [s.strip() for s in raw.split(",") if s.strip()]

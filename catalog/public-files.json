@@ -4,12 +4,12 @@
     {
       "source": "catalog/services.json",
       "destination": "catalog/services.json",
-      "sha256": "770ef3a81526c0d9b7829ffd315ae50f221e54799727708a24817a606f7098cc"
+      "sha256": "7803378535ef5ec993cbb283ec1560a08ee06d5827fde81277fb4bd0bd6ac44d"
     },
     {
       "source": "docs/operations/modular-cli.md",
       "destination": "docs/operations/modular-cli.md",
-      "sha256": "0083af553f213975604c5b2b4f96d4b653862a314e9403607e6a81c778d65d58"
+      "sha256": "f1d3ac6052b00d670a550686efa6a2640868b8b2265f8d3ba15c412b23ba6bd2"
     },
     {
       "source": "scripts/cleanup-plan.py",
@@ -39,22 +39,22 @@
     {
       "source": "scripts/homelab_lib/catalog.py",
       "destination": "scripts/homelab_lib/catalog.py",
-      "sha256": "496f3c72b6158d4e495c4053009a29a9365ae8e40191de026e7abac468820bc8"
+      "sha256": "30401eeeffcc99a49d08d6a7bfa5db368685922b230b6ccfb7f661e3320bce4b"
     },
     {
       "source": "scripts/homelab_lib/cli.py",
       "destination": "scripts/homelab_lib/cli.py",
-      "sha256": "260bdeebc7968a9be67e9f5f09cd39e74ad57c1b4da413b3597cd79a21ddf07b"
+      "sha256": "fb38d7d42467a36e77dd8a1e916c53357ed14588a0b4d4cb8cd20aa216f8b122"
     },
     {
       "source": "scripts/homelab_lib/host.py",
       "destination": "scripts/homelab_lib/host.py",
-      "sha256": "a9711ba6c9474c5b6c5a65a5f5f463dc576a85e806bbcfa4749d1fd8c11b6aa9"
+      "sha256": "2e0590e7b0d58ebe8a6cadcc688e98a2a289139b5959630e476103e07ee8e69c"
     },
     {
       "source": "scripts/homelab_lib/install.py",
       "destination": "scripts/homelab_lib/install.py",
-      "sha256": "bcdce3b3d50ead16ab25b1748bac2380d31d3f4800de49219b3dfa3b90c3b0ec"
+      "sha256": "522ce45dfec591417e67fce37f47e8ca8cd4ba30c848bc5023425442ce5e59aa"
     },
     {
       "source": "scripts/homelab_lib/latex.py",
@@ -74,7 +74,7 @@
     {
       "source": "scripts/homelab_lib/wizard.py",
       "destination": "scripts/homelab_lib/wizard.py",
-      "sha256": "416d710124bf5bee24c35eda5264e1b2cb1d77a655ef5c401017c23a65ae9426"
+      "sha256": "f332ef363e480ddb9eb04d0b6123c91613c96bbe438034aa2729f81a1d8a2c8a"
     },
     {
       "source": "templates/homepage/custom.css",
@@ -184,17 +184,112 @@
     {
       "source": "README.md",
       "destination": "README.md",
-      "sha256": "5ff3424c6a8adbd52b92f6fa74b1e2b649312222cf7368418ffab0f52397e4d9"
+      "sha256": "b2a329a227efb59f56290f770bd669806304abd435cbf0c6673dd7c5ff3e3d97"
     },
     {
       "source": ".gitignore",
       "destination": ".gitignore",
-      "sha256": "f93b585e3e4243f5bdd6a3df06b4aa0f6b27b5eed10e67a2eb8966deea7537d5"
+      "sha256": "a91af5b53196c1fdc74870b5d92763cb643be162ed1300889dbd12b02f888f47"
     },
     {
       "source": "AGENTS.md",
       "destination": "AGENTS.md",
       "sha256": "d48b895dd9e887948891c5e00523494f21f973ec9bf5e14c80a30d50cf92e9d1"
+    },
+    {
+      "source": "catalog/modules.json",
+      "destination": "catalog/modules.json",
+      "sha256": "ab26fde715d2671aa7f093c59c418493055be1f04dc366435929e7187a43fce5"
+    },
+    {
+      "source": "catalog/portal-ui.json",
+      "destination": "catalog/portal-ui.json",
+      "sha256": "2dfbf25555dd117f6d3ce9b475a4e311147cc266752300cd3e9cc05e60d29ab6"
+    },
+    {
+      "source": "templates/modular/portal.json",
+      "destination": "templates/modular/portal.json",
+      "sha256": "0c4c4012dc5d75bfd6636aba22574f75514d82d4913acd814cf8d88a53c5b006"
+    },
+    {
+      "source": "apps/portal/manage.py",
+      "destination": "apps/portal/manage.py",
+      "sha256": "edaee777139e29f4127a7e4bdce8f3317b6d09628404506a8f2b53ba52de0f7f"
+    },
+    {
+      "source": "apps/portal/Dockerfile",
+      "destination": "apps/portal/Dockerfile",
+      "sha256": "9cac7d6d66b383c5d8b6608dd16383f9c08927c4cc368d9a0302155172d8eb91"
+    },
+    {
+      "source": "apps/portal/config.example.json",
+      "destination": "apps/portal/config.example.json",
+      "sha256": "c6a10dd0b134a5336cb361cf7533c9b2792b17c816d428db80b85235b86fa072"
+    },
+    {
+      "source": "apps/portal/README.md",
+      "destination": "apps/portal/README.md",
+      "sha256": "c1013db6005f2b299b382f9fbfaddb15323d1543f927a89764ce4b16758c95a7"
+    },
+    {
+      "source": "tests/test_portal.py",
+      "destination": "tests/test_portal.py",
+      "sha256": "661ee5270d65755df7ebec2f9a61510c2454b825e6f9dee2667dfa445b3a2ffc"
+    },
+    {
+      "source": "tests/portal-model.mjs",
+      "destination": "tests/portal-model.mjs",
+      "sha256": "730bfeb0ccab5c80ec7e8943a2e6646ef040d27e050549df911d4891b354de2f"
+    },
+    {
+      "source": "tests/portal-browser.mjs",
+      "destination": "tests/portal-browser.mjs",
+      "sha256": "99cd0eaf5f19cfb9885d430cda2b19059c97fc58720e5354dbc0b2132a886d4f"
+    },
+    {
+      "source": "docs/decisions/ADR-003-private-portal.md",
+      "destination": "docs/decisions/ADR-003-private-portal.md",
+      "sha256": "ddc9d1a8553d84906fccb7e218a9c6226ba235001988a2264261c01f9efc7b66"
+    },
+    {
+      "source": "examples/compose/immich-logging.example.yml",
+      "destination": "examples/compose/immich-logging.example.yml",
+      "sha256": "1d6f2f31fdbe1808dadf5ef920a26d854ee2e2d6dd3989afe3a3994249ba6eb2"
+    },
+    {
+      "source": "apps/portal/web/app.js",
+      "destination": "apps/portal/web/app.js",
+      "sha256": "a348afb8911c28f790b922d3e7f8a4fb52079f44de95e2402bfdab7bde2b2cb7"
+    },
+    {
+      "source": "apps/portal/web/base.css",
+      "destination": "apps/portal/web/base.css",
+      "sha256": "b8a6b40862b16c47e9f16380a77fd08366b3611bc73915e2e47ea4ec290adba1"
+    },
+    {
+      "source": "apps/portal/web/index.html",
+      "destination": "apps/portal/web/index.html",
+      "sha256": "8731e9507d59c0298f35d5653932f1c348502dfbcafb5c1b6eb16b174fcaa561"
+    },
+    {
+      "source": "apps/portal/web/mark.svg",
+      "destination": "apps/portal/web/mark.svg",
+      "sha256": "9a56bf713d88dfc904a37a1cf297b3dd5801daa5264797c05d42fc717dda6635"
+    },
+    {
+      "source": "apps/portal/web/model.js",
+      "destination": "apps/portal/web/model.js",
+      "sha256": "4da34ed14a493a1cde828bf636b396a57b2e4b6c61a678af69e7979e30d16229"
+    },
+    {
+      "source": "apps/portal/web/styles.css",
+      "destination": "apps/portal/web/styles.css",
+      "sha256": "6f829a5f4f14ac8237291a8079dccbd6a88ce5aa5aa0a31ac515c7812a95c555"
+    },
+    {
+      "source": ".dockerignore",
+      "destination": ".dockerignore",
+      "sha256": "57f1e697a5bb39a1c8012f4774e6344a5e23a003f8fe8ba37b487f73166e51a3"
     }
   ]
 }
