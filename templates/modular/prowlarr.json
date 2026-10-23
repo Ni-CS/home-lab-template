@@ -1,0 +1,29 @@
+{
+  "cpu": {
+    "image": "lscr.io/linuxserver/prowlarr:latest",
+    "restart": "no",
+    "logging": {
+      "driver": "local",
+      "options": {
+        "max-size": "10m",
+        "max-file": "3"
+      }
+    },
+    "volumes": [
+      "@STATE@/prowlarr:/config"
+    ],
+    "ports": [
+      {
+        "target": 9696,
+        "published": "9696",
+        "host_ip": "@BIND@",
+        "protocol": "tcp"
+      }
+    ],
+    "environment": {
+      "PUID": "${PUID:-1000}",
+      "PGID": "${PGID:-1000}"
+    }
+  },
+  "gpu": null
+}

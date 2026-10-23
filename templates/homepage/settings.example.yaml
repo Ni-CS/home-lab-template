@@ -1,0 +1,12 @@
+title: HomeLab
+language: pt
+theme: dark
+color: slate
+useEqualHeights: true
+headerStyle: clean
+hideVersion: true
+quicklaunch:
+  searchDescriptions: true
+  hideInternetSearch: true
+  showSearchSuggestions: true
+  mobileButtonPosition: bottom-right

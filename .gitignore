@@ -1,49 +1,17 @@
-# ==========================================
-# IGNORAR VARIÁVEIS DE AMBIENTE
-# ==========================================
 .env
-*.env
-.env.local
-
-# ==========================================
-# IGNORAR BANCOS DE DADOS, CACHES E LOGS
-# ==========================================
+.env.*
+!.env.example
+*.local.*
+configs/
+data/
+media/
+__pycache__/
+*.py[cod]
 *.db
-*.sqlite
-*.sqlite3
+*.sqlite*
 *.log
-*.csv
-.DS_Store
-Thumbs.db
-
-# ==========================================
-# IGNORAR DADOS GERADOS PELOS CONTAINERS
-# ==========================================
-# Ignoramos tudo dentro das pastas de configuração que é auto-gerado,
-# pois o script setup.sh já se encarrega de criar as pastas em branco.
-
-configs/jellyfin/
-configs/kavita/
-configs/navidrome/
-configs/picard/
-configs/filebrowser/
-
-# Do homepage, ignoramos apenas os logs, mas mantemos os arquivos .yaml
-configs/homepage/logs/
-
-# Bancos de dados pesados e Caches (garantia extra)
-**/postgres/
-**/redis/
-**/couchdb_data/
-**/cache/
-**/metadata/
-
-# ==========================================
-# IGNORAR VOLUMES DE MÍDIA E IA
-# ==========================================
-**/data/
-**/uploads/
-**/media/
-**/models/
-**/outputs/
-**/audiocraft_cache/
+*.pem
+*.key
+homelab-reset-*.json
+.Rhistory
+.RData

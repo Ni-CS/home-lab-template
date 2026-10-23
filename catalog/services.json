@@ -1,0 +1,2753 @@
+{
+  "schema_version": 1,
+  "source_shape_sha256": "ad33d795e477c6d9ef228b772a8dbf985ddd8f1601723761513f9a11164dfdc6",
+  "services": [
+    {
+      "id": "actual-budget",
+      "category": "finance",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "actualbudget/actual-server:latest",
+        "build": false,
+        "profiles": [
+          "finance"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 5006,
+            "published": 5006,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/data",
+            "read_only": false
+          }
+        ],
+        "environment_names": [],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 5006,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "adguard",
+      "category": "core",
+      "execution": "always-on",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "adguard/adguardhome",
+        "build": false,
+        "profiles": [],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 53,
+            "published": 53,
+            "protocol": "tcp"
+          },
+          {
+            "target": 53,
+            "published": 53,
+            "protocol": "udp"
+          },
+          {
+            "target": 3000,
+            "published": 3005,
+            "protocol": "tcp"
+          },
+          {
+            "target": 8083,
+            "published": 8083,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/opt/adguardhome/work",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/opt/adguardhome/conf",
+            "read_only": false
+          }
+        ],
+        "environment_names": [],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/adguard.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 3005,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "bazarr",
+      "category": "arr",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "lscr.io/linuxserver/bazarr:latest",
+        "build": false,
+        "profiles": [
+          "arr"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 6767,
+            "published": 6767,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/media",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "PGID",
+          "PUID",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 6767,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "colab-local",
+      "category": "ai",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "required",
+        "variants": [
+          "gpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "us-docker.pkg.dev/colab-images/public/runtime",
+        "build": false,
+        "profiles": [
+          "ai"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 8080,
+            "published": 8899,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/content",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "NVIDIA_DRIVER_CAPABILITIES",
+          "NVIDIA_VISIBLE_DEVICES"
+        ],
+        "gpu": true,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 8899,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "docmost",
+      "category": "notes",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [
+        "docmost-db",
+        "docmost-redis"
+      ],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "docmost/docmost:latest",
+        "build": false,
+        "profiles": [
+          "notes"
+        ],
+        "dependencies": [
+          "docmost-db",
+          "docmost-redis"
+        ],
+        "ports": [
+          {
+            "target": 3000,
+            "published": 3006,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/app/data/storage",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "APP_SECRET",
+          "APP_URL",
+          "DATABASE_URL",
+          "REDIS_URL"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 3006,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "docmost-db",
+      "category": "notes",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "postgres:16-alpine",
+        "build": false,
+        "profiles": [
+          "notes"
+        ],
+        "dependencies": [],
+        "ports": [],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/var/lib/postgresql/data",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "POSTGRES_DB",
+          "POSTGRES_PASSWORD",
+          "POSTGRES_USER"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "docmost-redis",
+      "category": "notes",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "redis:7-alpine",
+        "build": false,
+        "profiles": [
+          "notes"
+        ],
+        "dependencies": [],
+        "ports": [],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/data",
+            "read_only": false
+          }
+        ],
+        "environment_names": [],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "fiduswriter",
+      "category": "writing",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "fiduswriter/fiduswriter:4.1.15",
+        "build": false,
+        "profiles": [
+          "writing"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 8000,
+            "published": 8000,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "volume",
+            "target": "/data",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "FIDUSWRITER_ALLOWED_HOSTS",
+          "FIDUSWRITER_CSRF_TRUSTED_ORIGINS",
+          "FIDUSWRITER_SECRET_KEY",
+          "FIDUSWRITER_SITE_NAME",
+          "FIDUSWRITER_VERSION",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 8000,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "filebrowser",
+      "category": "files",
+      "execution": "on-demand",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "filebrowser/filebrowser:latest",
+        "build": false,
+        "profiles": [
+          "files"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 80,
+            "published": 8085,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/srv",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/database/filebrowser.db",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "PGID",
+          "PUID"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/filebrowser.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 8085,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "flaresolverr",
+      "category": "arr",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/flaresolverr/flaresolverr:latest",
+        "build": false,
+        "profiles": [
+          "arr"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 8191,
+            "published": 8191,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [],
+        "environment_names": [
+          "LOG_LEVEL",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "classify-image-default-volumes-and-runtime-state",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 8191,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "fooocus",
+      "category": "ai",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "required",
+        "variants": [
+          "gpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": null,
+        "build": true,
+        "profiles": [
+          "ai"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 7865,
+            "published": 7865,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/content/data/models",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/content/data/outputs",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "CMDARGS",
+          "DATADIR"
+        ],
+        "gpu": true,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 7865,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "glances",
+      "category": "monitoring",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "nicolargo/glances:latest",
+        "build": false,
+        "profiles": [],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 61208,
+            "published": 61208,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/var/run/docker.sock",
+            "read_only": true
+          }
+        ],
+        "environment_names": [
+          "GLANCES_OPT",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 61208,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "homepage",
+      "category": "core",
+      "execution": "always-on",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/gethomepage/homepage:latest",
+        "build": false,
+        "profiles": [],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 3000,
+            "published": 3001,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/app/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/app/public/images",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/app/public/icons",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/var/run/docker.sock",
+            "read_only": true
+          }
+        ],
+        "environment_names": [
+          "HOMEPAGE_ALLOWED_HOSTS",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/homepage.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 3001,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "immich-machine-learning",
+      "category": "photos",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "optional",
+        "variants": [
+          "cpu",
+          "gpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/immich-app/immich-machine-learning:release-cuda",
+        "build": false,
+        "profiles": [
+          "photos"
+        ],
+        "dependencies": [],
+        "ports": [],
+        "storage": [
+          {
+            "type": "volume",
+            "target": "/cache",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "DB_DATABASE_NAME",
+          "DB_HOSTNAME",
+          "DB_PASSWORD",
+          "DB_USERNAME",
+          "REDIS_HOSTNAME"
+        ],
+        "gpu": true,
+        "healthcheck_declared": false,
+        "restart": "always",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "immich-postgres",
+      "category": "photos",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "tensorchord/pgvecto-rs:pg14-v0.2.0",
+        "build": false,
+        "profiles": [
+          "photos"
+        ],
+        "dependencies": [],
+        "ports": [],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/var/lib/postgresql/data",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "POSTGRES_DB",
+          "POSTGRES_INITDB_ARGS",
+          "POSTGRES_PASSWORD",
+          "POSTGRES_USER"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "always",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "immich-redis",
+      "category": "photos",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "redis:6.2-alpine",
+        "build": false,
+        "profiles": [
+          "photos"
+        ],
+        "dependencies": [],
+        "ports": [],
+        "storage": [],
+        "environment_names": [],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "always",
+        "logging": null
+      },
+      "template": null,
+      "backup": "classify-image-default-volumes-and-runtime-state",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "immich-server",
+      "category": "photos",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [
+        "immich-postgres",
+        "immich-redis"
+      ],
+      "integrations": [
+        "immich-machine-learning"
+      ],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/immich-app/immich-server:v2",
+        "build": false,
+        "profiles": [
+          "photos"
+        ],
+        "dependencies": [
+          "immich-postgres",
+          "immich-redis"
+        ],
+        "ports": [
+          {
+            "target": 2283,
+            "published": 2283,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/usr/src/app/upload",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/etc/localtime",
+            "read_only": true
+          }
+        ],
+        "environment_names": [
+          "DB_DATABASE_NAME",
+          "DB_HOSTNAME",
+          "DB_PASSWORD",
+          "DB_USERNAME",
+          "HOST",
+          "REDIS_HOSTNAME"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "always",
+        "logging": {
+          "driver": "local",
+          "options": {
+            "max-size": "10m",
+            "max-file": "3",
+            "compress": "true"
+          }
+        }
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 2283,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "jellyfin",
+      "category": "media",
+      "execution": "on-demand",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "optional",
+        "variants": [
+          "cpu",
+          "gpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "jellyfin/jellyfin:latest",
+        "build": false,
+        "profiles": [
+          "media"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 8096,
+            "published": 8096,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          },
+          {
+            "type": "volume",
+            "target": "/cache",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/media",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "TZ"
+        ],
+        "gpu": true,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/jellyfin.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 8096,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "jellyseerr",
+      "category": "media",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "fallenbagel/jellyseerr:latest",
+        "build": false,
+        "profiles": [
+          "media"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 5055,
+            "published": 5055,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/app/config",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "LOG_LEVEL",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 5055,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "kavita",
+      "category": "reading",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "jvmilazz0/kavita:latest",
+        "build": false,
+        "profiles": [
+          "reading"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 5000,
+            "published": 5000,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/kavita/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/libraries",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 5000,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "lidarr",
+      "category": "music",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [
+        "qbittorrent",
+        "prowlarr"
+      ],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "lscr.io/linuxserver/lidarr:latest",
+        "build": false,
+        "profiles": [
+          "music"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 8686,
+            "published": 8686,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/media",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "PGID",
+          "PUID",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 8686,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "mealie",
+      "category": "lifestyle",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/mealie-recipes/mealie:latest",
+        "build": false,
+        "profiles": [
+          "lifestyle"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 9000,
+            "published": 9925,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/app/data",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "ALLOW_SIGNUP",
+          "BASE_URL",
+          "PGID",
+          "PUID",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 9925,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "metube",
+      "category": "music",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/alexta69/metube:latest",
+        "build": false,
+        "profiles": [
+          "music",
+          "tools"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 8081,
+            "published": 8082,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/downloads",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "AUDIO_DOWNLOAD_DIR",
+          "CREATE_CUSTOM_DIRS",
+          "CUSTOM_DIRS",
+          "DOWNLOAD_DIR",
+          "MAX_CONCURRENT_DOWNLOADS",
+          "PGID",
+          "PUID",
+          "STATE_DIR",
+          "TEMP_DIR",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 8082,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "navidrome",
+      "category": "music",
+      "execution": "on-demand",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "deluan/navidrome:latest",
+        "build": false,
+        "profiles": [
+          "music"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 4533,
+            "published": 4533,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/data",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/music",
+            "read_only": true
+          }
+        ],
+        "environment_names": [
+          "ND_DEFAULTTHEME",
+          "ND_LOGLEVEL",
+          "ND_MUSICFOLDER",
+          "ND_SCANSCHEDULE",
+          "ND_SESSIONTIMEOUT"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/navidrome.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 4533,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "npm",
+      "category": "core",
+      "execution": "always-on",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "jc21/nginx-proxy-manager:latest",
+        "build": false,
+        "profiles": [],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 80,
+            "published": 80,
+            "protocol": "tcp"
+          },
+          {
+            "target": 443,
+            "published": 4443,
+            "protocol": "tcp"
+          },
+          {
+            "target": 81,
+            "published": 81,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/data",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/etc/letsencrypt",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/npm.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 81,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "olivetin",
+      "category": "admin",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/olivetin/olivetin:latest",
+        "build": false,
+        "profiles": [
+          "admin"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 1337,
+            "published": 1337,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/synthetic/repo",
+            "read_only": true
+          },
+          {
+            "type": "bind",
+            "target": "/var/run/docker.sock",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "HOMELAB_PATH",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "no",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 1337,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "ollama",
+      "category": "ai",
+      "execution": "on-demand",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "optional",
+        "variants": [
+          "cpu",
+          "gpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ollama/ollama:latest",
+        "build": false,
+        "profiles": [
+          "ai"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 11434,
+            "published": 11434,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "volume",
+            "target": "/root/.ollama",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "OLLAMA_HOST",
+          "OLLAMA_KEEP_ALIVE",
+          "OLLAMA_ORIGINS"
+        ],
+        "gpu": true,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/ollama.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 11434,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "open-webui",
+      "category": "ai",
+      "execution": "on-demand",
+      "availability": "renderable",
+      "dependencies": [
+        "ollama"
+      ],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/open-webui/open-webui:main",
+        "build": false,
+        "profiles": [
+          "ai"
+        ],
+        "dependencies": [
+          "ollama"
+        ],
+        "ports": [
+          {
+            "target": 8080,
+            "published": 3000,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "volume",
+            "target": "/app/backend/data",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "CORS_ALLOW_ORIGIN",
+          "OLLAMA_BASE_URL",
+          "WEBUI_SECRET_KEY"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/open-webui.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 3000,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "pairdrop",
+      "category": "sharing",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "lscr.io/linuxserver/pairdrop:latest",
+        "build": false,
+        "profiles": [
+          "sharing",
+          "tools"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 3000,
+            "published": 3002,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "PGID",
+          "PUID",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 3002,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "picard",
+      "category": "music",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "jlesage/musicbrainz-picard:latest",
+        "build": false,
+        "profiles": [
+          "music"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 5800,
+            "published": 5800,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/storage",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "GROUP_ID",
+          "TZ",
+          "USER_ID"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 5800,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "prowlarr",
+      "category": "arr",
+      "execution": "on-demand",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "lscr.io/linuxserver/prowlarr:latest",
+        "build": false,
+        "profiles": [
+          "arr",
+          "music"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 9696,
+            "published": 9696,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "PGID",
+          "PUID",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/prowlarr.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 9696,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "qbittorrent",
+      "category": "arr",
+      "execution": "on-demand",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "lscr.io/linuxserver/qbittorrent:latest",
+        "build": false,
+        "profiles": [
+          "arr",
+          "music"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 8080,
+            "published": 8080,
+            "protocol": "tcp"
+          },
+          {
+            "target": 6881,
+            "published": 6881,
+            "protocol": "tcp"
+          },
+          {
+            "target": 6881,
+            "published": 6881,
+            "protocol": "udp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/media",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "PGID",
+          "PUID",
+          "TZ",
+          "WEBUI_PORT"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/qbittorrent.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 8080,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "radarr",
+      "category": "arr",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [
+        "qbittorrent",
+        "prowlarr"
+      ],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "lscr.io/linuxserver/radarr:latest",
+        "build": false,
+        "profiles": [
+          "arr"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 7878,
+            "published": 7878,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/media",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "PGID",
+          "PUID",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 7878,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "romm",
+      "category": "games",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [
+        "romm-db"
+      ],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "rommapp/romm:latest",
+        "build": false,
+        "profiles": [
+          "games"
+        ],
+        "dependencies": [
+          "romm-db"
+        ],
+        "ports": [
+          {
+            "target": 8080,
+            "published": 8087,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/romm/library",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/romm/assets",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/romm/resources",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/romm/config",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "DB_HOST",
+          "DB_NAME",
+          "DB_PASSWD",
+          "DB_USER",
+          "ROMM_AUTH_SECRET_KEY",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 8087,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "romm-db",
+      "category": "games",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "mariadb:11",
+        "build": false,
+        "profiles": [
+          "games"
+        ],
+        "dependencies": [],
+        "ports": [],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/var/lib/mysql",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "MARIADB_DATABASE",
+          "MARIADB_PASSWORD",
+          "MARIADB_ROOT_PASSWORD",
+          "MARIADB_USER"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "securo-backend",
+      "category": "finance",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [
+        "securo-db",
+        "securo-redis"
+      ],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/securo-finance/securo-backend:latest",
+        "build": false,
+        "profiles": [
+          "finance"
+        ],
+        "dependencies": [
+          "securo-db",
+          "securo-redis"
+        ],
+        "ports": [],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/app/secrets",
+            "read_only": true
+          },
+          {
+            "type": "bind",
+            "target": "/app/data/attachments",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/app/data/agent_knowledge",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/app/data/embedding_models",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "AGENTS_ENABLED",
+          "AGENTS_KNOWLEDGE_STORAGE_PATH",
+          "DATABASE_URL",
+          "DEBUG",
+          "FRONTEND_URL",
+          "FX_SYNC_MODE",
+          "OPENEXCHANGERATES_APP_ID",
+          "PLUGGY_CLIENT_ID",
+          "PLUGGY_CLIENT_SECRET",
+          "REDIS_URL",
+          "SECRET_KEY",
+          "STORAGE_LOCAL_PATH",
+          "TESOURO_DIRETO_ENABLED"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "securo-celery-beat",
+      "category": "finance",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [
+        "securo-db",
+        "securo-redis"
+      ],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/securo-finance/securo-backend:latest",
+        "build": false,
+        "profiles": [
+          "finance"
+        ],
+        "dependencies": [
+          "securo-db",
+          "securo-redis"
+        ],
+        "ports": [],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/app/secrets",
+            "read_only": true
+          },
+          {
+            "type": "bind",
+            "target": "/app/data/attachments",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/app/data/agent_knowledge",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/app/data/embedding_models",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "AGENTS_ENABLED",
+          "AGENTS_KNOWLEDGE_STORAGE_PATH",
+          "DATABASE_URL",
+          "DEBUG",
+          "FRONTEND_URL",
+          "FX_SYNC_MODE",
+          "OPENEXCHANGERATES_APP_ID",
+          "PLUGGY_CLIENT_ID",
+          "PLUGGY_CLIENT_SECRET",
+          "REDIS_URL",
+          "SECRET_KEY",
+          "STORAGE_LOCAL_PATH",
+          "TESOURO_DIRETO_ENABLED"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "securo-celery-worker",
+      "category": "finance",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [
+        "securo-db",
+        "securo-redis"
+      ],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/securo-finance/securo-backend:latest",
+        "build": false,
+        "profiles": [
+          "finance"
+        ],
+        "dependencies": [
+          "securo-db",
+          "securo-redis"
+        ],
+        "ports": [],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/app/secrets",
+            "read_only": true
+          },
+          {
+            "type": "bind",
+            "target": "/app/data/attachments",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/app/data/agent_knowledge",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/app/data/embedding_models",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "AGENTS_ENABLED",
+          "AGENTS_KNOWLEDGE_STORAGE_PATH",
+          "DATABASE_URL",
+          "DEBUG",
+          "FRONTEND_URL",
+          "FX_SYNC_MODE",
+          "OPENEXCHANGERATES_APP_ID",
+          "PLUGGY_CLIENT_ID",
+          "PLUGGY_CLIENT_SECRET",
+          "REDIS_URL",
+          "SECRET_KEY",
+          "STORAGE_LOCAL_PATH",
+          "TESOURO_DIRETO_ENABLED"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "securo-db",
+      "category": "finance",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "pgvector/pgvector:pg16",
+        "build": false,
+        "profiles": [
+          "finance"
+        ],
+        "dependencies": [],
+        "ports": [],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/var/lib/postgresql/data",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "POSTGRES_DB",
+          "POSTGRES_PASSWORD",
+          "POSTGRES_USER"
+        ],
+        "gpu": false,
+        "healthcheck_declared": true,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "securo-frontend",
+      "category": "finance",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [
+        "securo-backend"
+      ],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "ghcr.io/securo-finance/securo-frontend:latest",
+        "build": false,
+        "profiles": [
+          "finance"
+        ],
+        "dependencies": [
+          "securo-backend"
+        ],
+        "ports": [
+          {
+            "target": 8080,
+            "published": 3010,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [],
+        "environment_names": [
+          "BACKEND_URL",
+          "FRONTEND_URL"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "classify-image-default-volumes-and-runtime-state",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 3010,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "securo-redis",
+      "category": "finance",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "redis:7-alpine",
+        "build": false,
+        "profiles": [
+          "finance"
+        ],
+        "dependencies": [],
+        "ports": [],
+        "storage": [],
+        "environment_names": [],
+        "gpu": false,
+        "healthcheck_declared": true,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "classify-image-default-volumes-and-runtime-state",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "sonarr",
+      "category": "arr",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [
+        "qbittorrent",
+        "prowlarr"
+      ],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "lscr.io/linuxserver/sonarr:latest",
+        "build": false,
+        "profiles": [
+          "arr"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 8989,
+            "published": 8989,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/media",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "PGID",
+          "PUID",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 8989,
+        "scheme": "http",
+        "path": "/"
+      }
+    },
+    {
+      "id": "spotdl",
+      "category": "music",
+      "execution": "on-demand",
+      "availability": "inventory-only",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": null,
+        "build": true,
+        "profiles": [
+          "music"
+        ],
+        "dependencies": [],
+        "ports": [],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/config",
+            "read_only": false
+          },
+          {
+            "type": "bind",
+            "target": "/music",
+            "read_only": false
+          }
+        ],
+        "environment_names": [
+          "HOME",
+          "TZ"
+        ],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "no",
+        "logging": null
+      },
+      "template": null,
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": null
+    },
+    {
+      "id": "uptime-kuma",
+      "category": "core",
+      "execution": "always-on",
+      "availability": "renderable",
+      "dependencies": [],
+      "integrations": [],
+      "hardware": {
+        "gpu": "none",
+        "variants": [
+          "cpu"
+        ],
+        "minimum_ram_mib": null
+      },
+      "observed": {
+        "image": "louislam/uptime-kuma:2",
+        "build": false,
+        "profiles": [
+          "core",
+          "monitoring"
+        ],
+        "dependencies": [],
+        "ports": [
+          {
+            "target": 3001,
+            "published": 3003,
+            "protocol": "tcp"
+          }
+        ],
+        "storage": [
+          {
+            "type": "bind",
+            "target": "/app/data",
+            "read_only": false
+          }
+        ],
+        "environment_names": [],
+        "gpu": false,
+        "healthcheck_declared": false,
+        "restart": "unless-stopped",
+        "logging": null
+      },
+      "template": "templates/modular/uptime-kuma.json",
+      "backup": "private-consistent-backup-and-isolated-restore-required",
+      "post_install": [
+        "docker-state-and-health-if-declared",
+        "authorized-functional-read-check",
+        "persistence-and-restore-check"
+      ],
+      "growth_bytes": null,
+      "navigation": {
+        "port": 3003,
+        "scheme": "http",
+        "path": "/"
+      }
+    }
+  ],
+  "future_modules": [
+    {
+      "id": "latex-overleaf",
+      "status": "toolkit-ready",
+      "category": "latex",
+      "gpu": "none"
+    },
+    {
+      "id": "comfyui",
+      "status": "planned",
+      "category": "ai",
+      "gpu": "optional"
+    }
+  ]
+}
